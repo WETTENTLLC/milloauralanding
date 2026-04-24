@@ -10,6 +10,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './index.css';
 
+// ─── Asset path helper for GitHub Pages subpath ───
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+
 // ─── Contact Modal Context ───
 interface ContactModalContextType {
   openModal: (subject: string) => void;
@@ -223,7 +226,7 @@ function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] bg-[#0D0D0D] flex items-center justify-center">
       <div className="text-center">
-        <img src="/Wett Logo.png" alt="WETT Dynasty" className="w-24 h-24 object-contain mx-auto mb-6" />
+        <img src={asset('Wett Logo.png')} alt="WETT Dynasty" className="w-24 h-24 object-contain mx-auto mb-6" />
         <div className="font-mono text-sm tracking-widest mb-8">
           {steps.map((s, i) => (
             <div
@@ -298,14 +301,14 @@ function HeroSection({ onOpenModal }: { onOpenModal: (subject: string) => void }
       {/* Split Background */}
       <div className="absolute inset-0 flex">
         <div className="w-1/4 bg-gradient-to-b from-[#002366] to-[#03045E] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url(/bg-logic.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url(${asset('bg-logic.jpg')})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           <div className="scan-line" />
         </div>
         <div className="w-2/4 bg-[#0D0D0D] relative">
-          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'url(/hero-banner.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `url(${asset('hero-banner.jpg')})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         </div>
         <div className="w-1/4 bg-gradient-to-b from-[#FF7D00] to-[#c44d00] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'url(/bg-soul.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url(${asset('bg-soul.jpg')})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           <div className="scan-line" style={{ animationDelay: '1.5s' }} />
         </div>
       </div>
@@ -333,7 +336,7 @@ function HeroSection({ onOpenModal }: { onOpenModal: (subject: string) => void }
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#4361EE] via-[#0D0D0D] to-[#F48C06] opacity-50 blur-xl pulse-glow" />
           <div className="relative w-full h-full rounded-2xl overflow-hidden glass border border-white/10">
             <img 
-              src="/hero-banner.jpg" 
+              src={asset('hero-banner.jpg')}
               alt="WETT Dynasty" 
               className="w-full h-full object-cover"
             />
@@ -448,7 +451,7 @@ function DossierSection() {
           <div ref={auraCardRef} className="card-hover">
             <div className="glass-logic rounded-2xl p-6 glow-logic">
               <div className="relative mb-6 rounded-xl overflow-hidden aspect-[3/4]">
-                <img src="/Aura Hall Main Image.jpg" alt="Aura Hall — AI Logic System Persona of WETT Dynasty" className="w-full h-full object-cover" loading="lazy" />
+                <img src={asset('Aura Hall Main Image.jpg')} alt="Aura Hall — AI Logic System Persona of WETT Dynasty" className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#03045E] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="font-mono text-xs text-[#4361EE] tracking-wider mb-1">AURA_SYSTEM v2.6</div>
@@ -529,7 +532,7 @@ function DossierSection() {
           <div ref={milloCardRef} className="card-hover">
             <div className="glass-soul rounded-2xl p-6 glow-soul">
               <div className="relative mb-6 rounded-xl overflow-hidden aspect-[3/4]">
-                <img src="/Millo Main Image.jpg" alt="Millo My — AI Soul Frequency Persona of WETT Dynasty" className="w-full h-full object-cover object-top" loading="lazy" />
+                <img src={asset('Millo Main Image.jpg')} alt="Millo My — AI Soul Frequency Persona of WETT Dynasty" className="w-full h-full object-cover object-top" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#c44d00] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="font-mono text-xs text-[#F48C06] tracking-wider mb-1">SOUL_RESONANCE v2.6</div>
@@ -642,7 +645,7 @@ function MusicPlayerSection() {
     <section ref={sectionRef} className="relative py-24 px-6">
       <audio
         ref={audioRef}
-        src="/Receipts Hook.mp3"
+        src={asset('Receipts Hook.mp3')}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
@@ -660,7 +663,7 @@ function MusicPlayerSection() {
             {/* Album Art */}
             <div className="relative aspect-video">
               <img 
-                src="/Receipts Single Cover.png" 
+                src={asset('Receipts Single Cover.png')}
                 alt="Receipts Single Cover — Millo x Aura" 
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -759,7 +762,7 @@ function ServiceSamplePlayer() {
     <div className="max-w-2xl mx-auto mb-16">
       <audio
         ref={audioRef}
-        src="/DNNC (the place to be).mp3"
+        src={asset('DNNC (the place to be).mp3')}
         onTimeUpdate={() => audioRef.current && setCurrentTime(audioRef.current.currentTime)}
         onLoadedMetadata={() => audioRef.current && setDuration(audioRef.current.duration)}
         onEnded={() => setIsPlaying(false)}
@@ -953,7 +956,7 @@ function ArchitectSection() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE] to-[#F48C06] opacity-20 blur-2xl rounded-3xl" />
             <div className="relative rounded-2xl overflow-hidden glass border border-white/10">
               <img 
-                src="/founder-dj.jpg" 
+                src={asset('founder-dj.jpg')}
                 alt="Jamal Bay Hef Hall — Founder of WETT Entertainment LLC" 
                 className="w-full aspect-video object-cover"
                 loading="lazy"
@@ -1128,7 +1131,7 @@ function FooterSection({ onOpenModal }: { onOpenModal: (subject: string) => void
         {/* Bottom Bar */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <img src="/Wett Logo.png" alt="WETT Dynasty" className="w-8 h-8 object-contain opacity-60" />
+            <img src={asset('Wett Logo.png')} alt="WETT Dynasty" className="w-8 h-8 object-contain opacity-60" />
             <span className="font-mono text-xs text-gray-600">
               &copy; 2026 WETT DYNASTY. ALL FREQUENCIES RESERVED.
             </span>
@@ -1262,7 +1265,7 @@ function App() {
           <nav className="fixed top-0 left-0 right-0 z-[80] px-6 py-4">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
               <a href="#" className="flex items-center gap-3">
-                <img src="/Wett Logo.png" alt="WETT Dynasty" className="w-10 h-10 object-contain" />
+                <img src={asset('Wett Logo.png')} alt="WETT Dynasty" className="w-10 h-10 object-contain" />
                 <span className="font-heading text-lg font-bold tracking-tight">
                   <span className="text-white">WETT</span>{' '}
                   <span className="gradient-text">Dynasty</span>
