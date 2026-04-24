@@ -1,16 +1,128 @@
 import { useState, useEffect, useRef, createContext, useContext } from 'react';
 import { 
   Cpu, Heart, Music, Zap, Radio, 
-  Play, Pause,
+  Play, Pause, X,
   CheckCircle, Lock, Mail, Instagram,
   ChevronRight, Sparkles, Mic, Headphones, Disc,
-  TrendingUp, Users, Crown, Code, Terminal
+  TrendingUp, Users, Crown, Code, Terminal, Send
 } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './index.css';
 
+// ─── Contact Modal Context ───
+interface ContactModalContextType {
+  openModal: (subject?: string) => void;
+}
+const ContactModalContext = createContext<ContactModalContextType>({
+  openModal: () => {},
+});
+const useContactModal = () => useContext(ContactModalContext);
+
 gsap.registerPlugin(ScrollTrigger);
+
+// ─── Contact Modal ───
+function ContactModal({ isOpen, onClose, subject }: { isOpen: boolean; onClose: () => void; subject: string }) {
+  const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState('sending');
+    try {
+      await fetch('https://formsubmit.co/ajax/wettentertainmentllc@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: `WETT Dynasty: ${subject}`,
+        }),
+      });
+      setFormState('sent');
+      setTimeout(() => { onClose(); setFormState('idle'); setName(''); setEmail(''); setMessage(''); }, 2000);
+    } catch {
+      setFormState('idle');
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[95] flex items-center justify-center px-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <div className="relative w-full max-w-md glass rounded-2xl p-6 border border-white/10" onClick={e => e.stopPropagation()}>
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
+          <X className="w-5 h-5" />
+        </button>
+
+        {formState === 'sent' ? (
+          <div className="text-center py-8">
+            <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+            <h3 className="font-heading text-xl font-bold mb-2">Transmission Received</h3>
+            <p className="font-mono text-xs text-gray-500">WE'LL BE IN TOUCH SHORTLY.</p>
+          </div>
+        ) : (
+          <>
+            <div className="mb-6">
+              <h3 className="font-heading text-xl font-bold mb-1">
+                <span className="gradient-text">{subject}</span>
+              </h3>
+              <p className="font-mono text-xs text-gray-500">OPEN_CHANNEL // SECURE_LINE</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">NAME</label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-[#4361EE]/50 transition-colors"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">EMAIL</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-[#4361EE]/50 transition-colors"
+                  placeholder="your@frequency.com"
+                />
+              </div>
+              <div>
+                <label className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">MESSAGE</label>
+                <textarea
+                  required
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  rows={3}
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-[#4361EE]/50 transition-colors resize-none"
+                  placeholder="What's on your mind?"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={formState === 'sending'}
+                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                <Send className="w-4 h-4" />
+                {formState === 'sending' ? 'TRANSMITTING...' : 'SEND TRANSMISSION'}
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
 
 // ─── Context for Logic Check Toggle ───
 interface LogicCheckContextType {
@@ -96,7 +208,7 @@ function LogicCheckToggle() {
 }
 
 // ─── Hero Section: The Gateway ───
-function HeroSection() {
+function HeroSection({ onOpenModal }: { onOpenModal: (subject: string) => void }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -189,11 +301,11 @@ function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="btn-primary flex items-center justify-center gap-2">
+          <button onClick={() => onOpenModal('Enter the Vault')} className="btn-primary flex items-center justify-center gap-2">
             <Disc className="w-4 h-4" />
             Enter the Vault
           </button>
-          <button className="btn-secondary flex items-center justify-center gap-2">
+          <button onClick={() => onOpenModal('Build Your Identity')} className="btn-secondary flex items-center justify-center gap-2">
             <Zap className="w-4 h-4" />
             Build Your Identity
           </button>
@@ -565,6 +677,7 @@ function ServiceSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const { logicMode } = useLogicCheck();
+  const { openModal } = useContactModal();
 
   const tiers = [
     {
@@ -661,7 +774,9 @@ function ServiceSection() {
                   ))}
                 </ul>
 
-                <button className={`w-full py-3 rounded-lg font-mono text-sm tracking-wider transition-all ${
+                <button 
+                  onClick={() => openModal(`${tier.name} Inquiry`)}
+                  className={`w-full py-3 rounded-lg font-mono text-sm tracking-wider transition-all ${
                   isLogic 
                     ? 'bg-[#4361EE]/20 border border-[#4361EE]/50 hover:bg-[#4361EE]/40 text-[#4361EE]' 
                     : 'bg-[#F48C06]/20 border border-[#F48C06]/50 hover:bg-[#F48C06]/40 text-[#F48C06]'
@@ -778,7 +893,7 @@ function ArchitectSection() {
 }
 
 // ─── Footer / Ecosystem Section ───
-function FooterSection() {
+function FooterSection({ onOpenModal }: { onOpenModal: (subject: string) => void }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -806,7 +921,7 @@ function FooterSection() {
               Exclusive access to AI persona management, early releases, 
               behind-the-scenes content, and direct connection to the architects.
             </p>
-            <button className="btn-primary flex items-center gap-2 mx-auto">
+            <button onClick={() => onOpenModal('VIP Access Request')} className="btn-primary flex items-center gap-2 mx-auto">
               <Sparkles className="w-4 h-4" />
               Request Access
             </button>
@@ -991,9 +1106,17 @@ function DataParticles() {
 function App() {
   const [logicMode, setLogicMode] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalSubject, setModalSubject] = useState('');
+
+  const openModal = (subject: string) => {
+    setModalSubject(subject);
+    setModalOpen(true);
+  };
 
   return (
     <LogicCheckContext.Provider value={{ logicMode, setLogicMode }}>
+    <ContactModalContext.Provider value={{ openModal }}>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       
       {loaded && (
@@ -1014,17 +1137,19 @@ function App() {
           </nav>
 
           <LogicCheckToggle />
+          <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} subject={modalSubject} />
           
           <main className="relative z-10">
-            <HeroSection />
+            <HeroSection onOpenModal={openModal} />
             <DossierSection />
             <MusicPlayerSection />
             <ServiceSection />
             <ArchitectSection />
-            <FooterSection />
+            <FooterSection onOpenModal={openModal} />
           </main>
         </div>
       )}
+    </ContactModalContext.Provider>
     </LogicCheckContext.Provider>
   );
 }
