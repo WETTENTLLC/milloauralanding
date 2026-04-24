@@ -13,6 +13,41 @@ import './index.css';
 // ─── Asset path helper for GitHub Pages subpath ───
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 
+// ─── Global Audio Manager (only one player at a time) ───
+let activeAudio: HTMLAudioElement | null = null;
+let activeAudioSetter: ((playing: boolean) => void) | null = null;
+
+const playAudio = async (
+  audio: HTMLAudioElement,
+  setIsPlaying: (playing: boolean) => void
+) => {
+  // Stop any other playing audio first
+  if (activeAudio && activeAudio !== audio) {
+    activeAudio.pause();
+    activeAudioSetter?.(false);
+  }
+  try {
+    await audio.play();
+    activeAudio = audio;
+    activeAudioSetter = setIsPlaying;
+    setIsPlaying(true);
+  } catch {
+    setIsPlaying(false);
+  }
+};
+
+const pauseAudio = (
+  audio: HTMLAudioElement,
+  setIsPlaying: (playing: boolean) => void
+) => {
+  audio.pause();
+  setIsPlaying(false);
+  if (activeAudio === audio) {
+    activeAudio = null;
+    activeAudioSetter = null;
+  }
+};
+
 // ─── Contact Modal Context ───
 interface ContactModalContextType {
   openModal: (subject: string) => void;
@@ -598,11 +633,10 @@ function MusicPlayerSection() {
   const togglePlay = () => {
     if (!audioRef.current) return;
     if (isPlaying) {
-      audioRef.current.pause();
+      pauseAudio(audioRef.current, setIsPlaying);
     } else {
-      audioRef.current.play();
+      playAudio(audioRef.current, setIsPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleTimeUpdate = () => {
@@ -620,7 +654,11 @@ function MusicPlayerSection() {
     audioRef.current.currentTime = pct * duration;
   };
 
-  const handleEnded = () => setIsPlaying(false);
+  const handleEnded = () => {
+    setIsPlaying(false);
+    activeAudio = null;
+    activeAudioSetter = null;
+  };
 
   const formatTime = (t: number) => {
     const m = Math.floor(t / 60);
@@ -646,6 +684,7 @@ function MusicPlayerSection() {
       <audio
         ref={audioRef}
         src={asset('Receipts Hook.mp3')}
+        preload="metadata"
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
@@ -746,8 +785,11 @@ function ServiceSamplePlayer() {
 
   const togglePlay = () => {
     if (!audioRef.current) return;
-    if (isPlaying) { audioRef.current.pause(); } else { audioRef.current.play(); }
-    setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      pauseAudio(audioRef.current, setIsPlaying);
+    } else {
+      playAudio(audioRef.current, setIsPlaying);
+    }
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -763,9 +805,10 @@ function ServiceSamplePlayer() {
       <audio
         ref={audioRef}
         src={asset('DNNC (the place to be).mp3')}
+        preload="metadata"
         onTimeUpdate={() => audioRef.current && setCurrentTime(audioRef.current.currentTime)}
         onLoadedMetadata={() => audioRef.current && setDuration(audioRef.current.duration)}
-        onEnded={() => setIsPlaying(false)}
+        onEnded={() => { setIsPlaying(false); activeAudio = null; activeAudioSetter = null; }}
       />
       <div className="glass rounded-2xl p-6 border border-white/10">
         <div className="font-mono text-xs text-[#F48C06] tracking-wider mb-1 flex items-center gap-2">
@@ -1034,12 +1077,28 @@ function ArchitectSection() {
 function FooterSection({ onOpenModal }: { onOpenModal: (subject: string) => void }) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [subSending, setSubSending] = useState(false);
 
-  const handleSubscribe = () => {
-    if (email) {
+  const handleSubscribe = async () => {
+    if (!email || subSending) return;
+    if (isRateLimited('newsletter', 15000)) return;
+    setSubSending(true);
+    try {
+      await fetch('https://formsubmit.co/ajax/wettentertainmentllc@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          email: sanitize(email.trim()),
+          _subject: 'WETT Dynasty: New Frequency Report Subscriber',
+          _template: 'table',
+        }),
+      });
       setSubscribed(true);
       setEmail('');
+    } catch {
+      // silently fail
     }
+    setSubSending(false);
   };
 
   return (
