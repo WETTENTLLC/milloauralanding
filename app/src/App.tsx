@@ -12,7 +12,7 @@ import './index.css';
 
 // ─── Contact Modal Context ───
 interface ContactModalContextType {
-  openModal: (subject?: string) => void;
+  openModal: (subject: string) => void;
 }
 const ContactModalContext = createContext<ContactModalContextType>({
   openModal: () => {},
@@ -21,25 +21,61 @@ const useContactModal = () => useContext(ContactModalContext);
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ─── Security: Input Sanitizer ───
+const sanitize = (str: string): string =>
+  str.replace(/[<>"'&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;', '&': '&amp;' }[c] || c));
+
+// ─── Security: Rate Limiter ───
+const rateLimitMap = new Map<string, number>();
+const isRateLimited = (key: string, cooldownMs = 30000): boolean => {
+  const last = rateLimitMap.get(key) || 0;
+  if (Date.now() - last < cooldownMs) return true;
+  rateLimitMap.set(key, Date.now());
+  return false;
+};
+
 // ─── Contact Modal ───
 function ContactModal({ isOpen, onClose, subject }: { isOpen: boolean; onClose: () => void; subject: string }) {
-  const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [formState, setFormState] = useState<'idle' | 'sending' | 'sent' | 'rate-limited'>('idle');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [honeypot, setHoneypot] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot bot trap
+    if (honeypot) return;
+
+    // Rate limiting
+    if (isRateLimited('contact-form')) {
+      setFormState('rate-limited');
+      setTimeout(() => setFormState('idle'), 3000);
+      return;
+    }
+
+    // Sanitize inputs
+    const cleanName = sanitize(name.trim());
+    const cleanEmail = sanitize(email.trim());
+    const cleanMessage = sanitize(message.trim());
+
+    // Validation
+    if (!cleanName || !cleanEmail || !cleanMessage) return;
+    if (cleanName.length > 100 || cleanEmail.length > 254 || cleanMessage.length > 2000) return;
+
     setFormState('sending');
     try {
       await fetch('https://formsubmit.co/ajax/wettentertainmentllc@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          name,
-          email,
-          message,
-          _subject: `WETT Dynasty: ${subject}`,
+          name: cleanName,
+          email: cleanEmail,
+          message: cleanMessage,
+          _subject: `WETT Dynasty: ${sanitize(subject)}`,
+          _captcha: 'false',
+          _template: 'table',
         }),
       });
       setFormState('sent');
@@ -52,10 +88,10 @@ function ContactModal({ isOpen, onClose, subject }: { isOpen: boolean; onClose: 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[95] flex items-center justify-center px-4" onClick={onClose}>
+    <div className="fixed inset-0 z-[95] flex items-center justify-center px-4" onClick={onClose} role="dialog" aria-modal="true" aria-label={`Contact form: ${subject}`}>
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
       <div className="relative w-full max-w-md glass rounded-2xl p-6 border border-white/10" onClick={e => e.stopPropagation()}>
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
+        <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors" aria-label="Close form">
           <X className="w-5 h-5" />
         </button>
 
@@ -64,6 +100,12 @@ function ContactModal({ isOpen, onClose, subject }: { isOpen: boolean; onClose: 
             <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
             <h3 className="font-heading text-xl font-bold mb-2">Transmission Received</h3>
             <p className="font-mono text-xs text-gray-500">WE'LL BE IN TOUCH SHORTLY.</p>
+          </div>
+        ) : formState === 'rate-limited' ? (
+          <div className="text-center py-8">
+            <Lock className="w-12 h-12 text-[#F48C06] mx-auto mb-4" />
+            <h3 className="font-heading text-xl font-bold mb-2">Slow Down</h3>
+            <p className="font-mono text-xs text-gray-500">PLEASE WAIT BEFORE SENDING AGAIN.</p>
           </div>
         ) : (
           <>
@@ -75,32 +117,51 @@ function ContactModal({ isOpen, onClose, subject }: { isOpen: boolean; onClose: 
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot — hidden from real users, catches bots */}
+              <input
+                type="text"
+                name="_honey"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
               <div>
-                <label className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">NAME</label>
+                <label htmlFor="contact-name" className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">NAME</label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
+                  maxLength={100}
                   value={name}
                   onChange={e => setName(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-[#4361EE]/50 transition-colors"
                   placeholder="Your name"
+                  autoComplete="name"
                 />
               </div>
               <div>
-                <label className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">EMAIL</label>
+                <label htmlFor="contact-email" className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">EMAIL</label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
+                  maxLength={254}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-[#4361EE]/50 transition-colors"
                   placeholder="your@frequency.com"
+                  autoComplete="email"
                 />
               </div>
               <div>
-                <label className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">MESSAGE</label>
+                <label htmlFor="contact-message" className="font-mono text-[10px] text-gray-500 tracking-wider block mb-1">MESSAGE</label>
                 <textarea
+                  id="contact-message"
                   required
+                  maxLength={2000}
                   value={message}
                   onChange={e => setMessage(e.target.value)}
                   rows={3}
@@ -387,7 +448,7 @@ function DossierSection() {
           <div ref={auraCardRef} className="card-hover">
             <div className="glass-logic rounded-2xl p-6 glow-logic">
               <div className="relative mb-6 rounded-xl overflow-hidden aspect-[3/4]">
-                <img src="/Aura Hall Main Image.jpg" alt="Aura" className="w-full h-full object-cover" />
+                <img src="/Aura Hall Main Image.jpg" alt="Aura Hall — AI Logic System Persona of WETT Dynasty" className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#03045E] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="font-mono text-xs text-[#4361EE] tracking-wider mb-1">AURA_SYSTEM v2.6</div>
@@ -468,7 +529,7 @@ function DossierSection() {
           <div ref={milloCardRef} className="card-hover">
             <div className="glass-soul rounded-2xl p-6 glow-soul">
               <div className="relative mb-6 rounded-xl overflow-hidden aspect-[3/4]">
-                <img src="/Millo Main Image.jpg" alt="Millo" className="w-full h-full object-cover object-top" />
+                <img src="/Millo Main Image.jpg" alt="Millo My — AI Soul Frequency Persona of WETT Dynasty" className="w-full h-full object-cover object-top" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#c44d00] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="font-mono text-xs text-[#F48C06] tracking-wider mb-1">SOUL_RESONANCE v2.6</div>
@@ -600,8 +661,9 @@ function MusicPlayerSection() {
             <div className="relative aspect-video">
               <img 
                 src="/Receipts Single Cover.png" 
-                alt="Receipts - Millo x Aura" 
+                alt="Receipts Single Cover — Millo x Aura" 
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent" />
               {isPlaying && (
@@ -892,8 +954,9 @@ function ArchitectSection() {
             <div className="relative rounded-2xl overflow-hidden glass border border-white/10">
               <img 
                 src="/founder-dj.jpg" 
-                alt="DJ Slappy - The Architect" 
+                alt="Jamal Bay Hef Hall — Founder of WETT Entertainment LLC" 
                 className="w-full aspect-video object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D]/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 font-mono text-xs text-red-500 flex items-center gap-2">

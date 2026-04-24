@@ -3,7 +3,204 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WETT Dynasty Hub</title>
+
+    <!-- ═══ SECURITY HEADERS ═══ -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload" />
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: blob: https:;
+      media-src 'self';
+      connect-src 'self' https://formsubmit.co https://fonts.googleapis.com https://fonts.gstatic.com;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self' https://formsubmit.co;
+      upgrade-insecure-requests;
+    " />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+
+    <!-- ═══ PRIMARY SEO ═══ -->
+    <title>WETT Dynasty | AI Music Production & Sonic Architecture by Millo & Aura — East Oakland</title>
+    <meta name="description" content="WETT Dynasty is the AI-powered music empire founded by Jamal 'Bay Hef' Hall. Home to Millo My & Aura Hall — two AI personas creating Forensic Mob Music. Custom sonic branding, artist development, and the New Age Town Sound from East Oakland to the world." />
+    <meta name="keywords" content="WETT Dynasty, WETT Entertainment, Millo My, Aura Hall, AI music, Forensic Mob Music, sonic architecture, custom music production, brand anthem, AI artist, East Oakland music, Jamal Bay Hef Hall, New Age Town Sound, Receipts, sonic branding, music for business, AI personas, WETT AI" />
+    <meta name="author" content="WETT Entertainment LLC" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://wettdynasty.com" />
+
+    <!-- ═══ OPEN GRAPH (Facebook, LinkedIn, Discord) ═══ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WETT Dynasty" />
+    <meta property="og:title" content="WETT Dynasty | AI Music Production & Sonic Architecture" />
+    <meta property="og:description" content="Logic meets soul. Home to AI personas Millo My & Aura Hall. Custom Forensic Mob Music, sonic branding, and the New Age Town Sound. Founded by Jamal 'Bay Hef' Hall in East Oakland." />
+    <meta property="og:url" content="https://wettdynasty.com" />
+    <meta property="og:image" content="https://wettdynasty.com/hero-banner.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="WETT Dynasty — Millo & Aura AI Music Empire" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ═══ TWITTER CARDS ═══ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WETT Dynasty | AI Music Production & Sonic Architecture" />
+    <meta name="twitter:description" content="Logic meets soul. AI personas Millo My & Aura Hall creating Forensic Mob Music. Custom sonic branding from East Oakland." />
+    <meta name="twitter:image" content="https://wettdynasty.com/hero-banner.jpg" />
+    <meta name="twitter:image:alt" content="WETT Dynasty — Millo & Aura AI Music Empire" />
+
+    <!-- ═══ FAVICON & APP ICONS ═══ -->
+    <link rel="icon" type="image/png" href="/Wett Logo.png" />
+    <link rel="apple-touch-icon" href="/Wett Logo.png" />
+    <meta name="theme-color" content="#0D0D0D" />
+    <meta name="msapplication-TileColor" content="#0D0D0D" />
+
+    <!-- ═══ PERFORMANCE: PRECONNECT ═══ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://formsubmit.co" />
+
+    <!-- ═══ JSON-LD STRUCTURED DATA (SEO + AEO) ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://wettdynasty.com/#website",
+          "url": "https://wettdynasty.com",
+          "name": "WETT Dynasty",
+          "description": "AI-powered music empire. Home to Millo My & Aura Hall. Forensic Mob Music and sonic architecture from East Oakland.",
+          "publisher": { "@id": "https://wettdynasty.com/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": { "@type": "EntryPoint", "urlTemplate": "https://wettdynasty.com/?s={search_term_string}" },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://wettdynasty.com/#organization",
+          "name": "WETT Entertainment LLC",
+          "alternateName": ["WETT Dynasty", "WETT AI"],
+          "url": "https://wettdynasty.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://wettdynasty.com/Wett Logo.png",
+            "width": 512,
+            "height": 512
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Jamal 'Bay Hef' Hall",
+            "alternateName": "The Architect",
+            "jobTitle": "Founder & CEO",
+            "description": "Founder of WETT Entertainment LLC with 30+ years of music industry experience. Trained under Dwayne Wiggins of Tony! Toni! Toné!",
+            "address": { "@type": "PostalAddress", "addressLocality": "East Oakland", "addressRegion": "CA", "addressCountry": "US" }
+          },
+          "sameAs": [
+            "https://instagram.com/millo_aura",
+            "https://wettentertainment.gumroad.com/l/milloaura2026"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "wettentertainmentllc@gmail.com",
+            "contactType": "customer service",
+            "availableLanguage": "English"
+          },
+          "knowsAbout": ["AI Music Production", "Sonic Branding", "Artist Development", "Forensic Mob Music", "Custom Brand Anthems"]
+        },
+        {
+          "@type": "MusicGroup",
+          "name": "Millo My & Aura Hall",
+          "alternateName": ["Millo x Aura", "WETT AI"],
+          "description": "AI music personas created by WETT Entertainment. Millo My is The Muse (soul frequency) and Aura Hall is The Architect (logic system). Together they create Forensic Mob Music — the New Age Town Sound.",
+          "genre": ["Forensic Mob Music", "AI Music", "New Age Town Sound"],
+          "foundingLocation": { "@type": "Place", "name": "East Oakland, California" },
+          "member": [
+            { "@type": "Person", "name": "Millo My", "description": "AI persona — The Muse. Soul frequency artist of the WETT Dynasty." },
+            { "@type": "Person", "name": "Aura Hall", "description": "AI persona — The Architect. Logic system and strategic consciousness of the WETT Dynasty." }
+          ],
+          "track": [
+            { "@type": "MusicRecording", "name": "Receipts", "byArtist": { "@type": "MusicGroup", "name": "Millo x Aura" } },
+            { "@type": "MusicRecording", "name": "DNNC (The Place to Be)", "byArtist": { "@type": "MusicGroup", "name": "WETT Entertainment" } }
+          ],
+          "sameAs": ["https://instagram.com/millo_aura"]
+        },
+        {
+          "@type": "Service",
+          "name": "WETT Sonic Architecture",
+          "provider": { "@id": "https://wettdynasty.com/#organization" },
+          "description": "Custom music production and sonic branding services. From 15-second social hooks to full brand identity anthems and dynasty-level sonic architecture.",
+          "serviceType": "Music Production & Sonic Branding",
+          "areaServed": { "@type": "Country", "name": "United States" },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Sonic Architecture Tiers",
+            "itemListElement": [
+              { "@type": "Offer", "name": "The Social Hook", "description": "15s custom audio for Reels/TikTok with commercial license", "price": "299", "priceCurrency": "USD" },
+              { "@type": "Offer", "name": "The Brand Identity", "description": "30-60s brand anthem with social-ready stems and full license", "price": "1499", "priceCurrency": "USD" },
+              { "@type": "Offer", "name": "The Dynasty Build", "description": "Full album/EP identity with virtual avatar consulting and white-glove support" }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is WETT Dynasty?",
+              "acceptedAnswer": { "@type": "Answer", "text": "WETT Dynasty is an AI-powered music empire founded by Jamal 'Bay Hef' Hall through WETT Entertainment LLC. It is home to two AI personas — Millo My (The Muse) and Aura Hall (The Architect) — who create a proprietary genre called Forensic Mob Music, also known as the New Age Town Sound." }
+            },
+            {
+              "@type": "Question",
+              "name": "Who are Millo My and Aura Hall?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Millo My is the soul-frequency AI persona known as The Muse, and Aura Hall is the logic-system AI persona known as The Architect. Together they form the creative core of WETT Dynasty, producing music that blends strategic intelligence with raw emotional resonance." }
+            },
+            {
+              "@type": "Question",
+              "name": "What is Forensic Mob Music?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Forensic Mob Music is a proprietary genre created by Jamal 'Bay Hef' Hall that translates decades of music industry knowledge into a systematic sonic architecture. It is the signature sound of WETT Dynasty's AI personas Millo My and Aura Hall." }
+            },
+            {
+              "@type": "Question",
+              "name": "Can WETT Dynasty create custom music for my business?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. WETT Dynasty offers sonic architecture services including 15-second social hooks for TikTok/Reels ($299), full brand identity anthems ($1,499), and custom dynasty-level builds for agencies and enterprises. They created the track 'DNNC (The Place to Be)' for Delane's Natural Nail Care in San Leandro, CA." }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can I listen to Millo and Aura's music?",
+              "acceptedAnswer": { "@type": "Answer", "text": "You can preview tracks directly on the WETT Dynasty website and purchase the full catalog on a pay-what-you-want basis at wettentertainment.gumroad.com. New songs are added monthly." }
+            },
+            {
+              "@type": "Question",
+              "name": "Who founded WETT Entertainment?",
+              "acceptedAnswer": { "@type": "Answer", "text": "WETT Entertainment LLC was founded by Jamal 'Bay Hef' Hall, also known as The Architect. Raised in East Oakland, he has over 30 years of music industry experience including training under Dwayne Wiggins of Tony! Toni! Toné! He created both AI personas as extensions of his life's work." }
+            }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://wettdynasty.com/#webpage",
+          "url": "https://wettdynasty.com",
+          "name": "WETT Dynasty | AI Music Production & Sonic Architecture",
+          "isPartOf": { "@id": "https://wettdynasty.com/#website" },
+          "about": { "@id": "https://wettdynasty.com/#organization" },
+          "description": "Official hub of WETT Dynasty. AI-powered music production, sonic branding services, and home to Millo My & Aura Hall.",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wettdynasty.com" }
+            ]
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
