@@ -427,22 +427,6 @@ function DossierSection() {
   const auraCardRef = useRef<HTMLDivElement>(null);
   const milloCardRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
-  const [moodColor, setMoodColor] = useState('#FF7D00');
-  const [playingStem, setPlayingStem] = useState<number | null>(null);
-
-  const stems = [
-    { name: 'NEURAL_BASS', duration: '0:15' },
-    { name: 'GLITCH_PERC', duration: '0:15' },
-    { name: 'SYNTH_LEAD', duration: '0:15' },
-    { name: 'LOGIC_PAD', duration: '0:15' },
-  ];
-
-  const moods = [
-    { color: '#FF7D00', name: 'GOLDEN_HOUR', track: 'Sunset in Oakland' },
-    { color: '#FF006E', name: 'DEEP_PASSION', track: 'Heart Frequency' },
-    { color: '#8338EC', name: 'DREAM_STATE', track: 'Lucid Vibes' },
-    { color: '#06FFA5', name: 'NEW_GROWTH', track: 'Spring Forward' },
-  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -472,7 +456,7 @@ function DossierSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 px-6 overflow-hidden" style={{ backgroundColor: moodColor + '08' }}>
+    <section ref={sectionRef} className="relative py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
@@ -481,7 +465,7 @@ function DossierSection() {
           <p className="font-mono text-sm text-gray-500 tracking-wider">DOSSIER_FILES // CLASSIFIED</p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-start">
+        <div className="grid lg:grid-cols-3 gap-8 items-stretch">
           {/* Aura Card */}
           <div ref={auraCardRef} className="card-hover">
             <div className="glass-logic rounded-2xl p-6 glow-logic">
@@ -534,7 +518,7 @@ function DossierSection() {
           </div>
 
           {/* Center Content */}
-          <div ref={centerRef} className="text-center py-8">
+          <div ref={centerRef} className="flex flex-col items-center justify-center text-center py-8">
             <div className="relative w-48 h-48 mx-auto mb-6">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4361EE] to-[#F48C06] opacity-30 blur-2xl pulse-glow" />
               <div className="relative w-full h-full rounded-full glass border border-white/20 flex items-center justify-center">
@@ -686,11 +670,11 @@ function MusicPlayerSection() {
         <div ref={playerRef} className="ipad-frame max-w-3xl mx-auto">
           <div className="bg-[#0D0D0D] rounded-2xl overflow-hidden">
             {/* Album Art */}
-            <div className="relative aspect-video">
+            <div className="relative aspect-square">
               <img 
                 src={asset('Receipts Single Cover.png')}
                 alt="Receipts Single Cover — Millo x Aura" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-transparent to-transparent" />
@@ -840,7 +824,6 @@ function ServiceSamplePlayer() {
 function ServiceSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-  const { logicMode } = useLogicCheck();
   const { openModal } = useContactModal();
 
   const tiers = [
@@ -915,7 +898,7 @@ function ServiceSection() {
                 key={i} 
                 className={`tier-card card-hover rounded-2xl p-6 ${
                   isLogic ? 'glass-logic glow-logic' : 'glass-soul glow-soul'
-                } ${tier.featured ? 'md:scale-105 md:-my-4' : ''}`}
+                } ${tier.featured ? 'ring-1 ring-[#F48C06]/50' : ''}`}
               >
                 {tier.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 font-mono text-[10px] bg-gradient-to-r from-[#4361EE] to-[#F48C06] px-4 py-1 rounded-full text-white">
@@ -954,7 +937,7 @@ function ServiceSection() {
                   isLogic 
                     ? 'bg-[#4361EE]/20 border border-[#4361EE]/50 hover:bg-[#4361EE]/40 text-[#4361EE]' 
                     : 'bg-[#F48C06]/20 border border-[#F48C06]/50 hover:bg-[#F48C06]/40 text-[#F48C06]'
-                >`}
+                }`}>
                   GET STARTED
                 </button>
               </div>
@@ -992,10 +975,10 @@ function ArchitectSection() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE] to-[#F48C06] opacity-20 blur-2xl rounded-3xl" />
             <div className="relative rounded-2xl overflow-hidden glass border border-white/10">
-              <img 
+                <img 
                 src={asset('founder-dj.jpg')}
                 alt="Jamal Bay Hef Hall — Founder of WETT Entertainment LLC" 
-                className="w-full aspect-video object-cover"
+                className="w-full aspect-video object-cover object-center"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D]/80 via-transparent to-transparent" />
