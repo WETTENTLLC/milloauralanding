@@ -5,7 +5,7 @@ Disallow: /node_modules/
 Disallow: /src/
 
 # Sitemap
-Sitemap: https://wettdynasty.com/sitemap.xml
+Sitemap: https://wettentllc.github.io/milloauralanding/sitemap.xml
 
 # Security
 User-agent: AhrefsBot

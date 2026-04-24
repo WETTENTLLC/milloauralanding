@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:audio="http://www.google.com/schemas/sitemap-audio/1.0">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://wettdynasty.com/</loc>
+    <loc>https://wettentllc.github.io/milloauralanding/</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://wettdynasty.com/hero-banner.jpg</image:loc>
+      <image:loc>https://wettentllc.github.io/milloauralanding/hero-banner.jpg</image:loc>
       <image:title>WETT Dynasty — AI Music Empire</image:title>
       <image:caption>WETT Dynasty hub featuring Millo My and Aura Hall AI personas</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://wettdynasty.com/Wett%20Logo.png</image:loc>
+      <image:loc>https://wettentllc.github.io/milloauralanding/Wett%20Logo.png</image:loc>
       <image:title>WETT Dynasty Logo</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://wettdynasty.com/Millo%20Main%20Image.jpg</image:loc>
+      <image:loc>https://wettentllc.github.io/milloauralanding/Millo%20Main%20Image.jpg</image:loc>
       <image:title>Millo My — The Muse</image:title>
       <image:caption>Millo My, AI soul-frequency persona of WETT Dynasty</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://wettdynasty.com/Aura%20Hall%20Main%20Image.jpg</image:loc>
+      <image:loc>https://wettentllc.github.io/milloauralanding/Aura%20Hall%20Main%20Image.jpg</image:loc>
       <image:title>Aura Hall — The Architect</image:title>
       <image:caption>Aura Hall, AI logic-system persona of WETT Dynasty</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://wettdynasty.com/Receipts%20Single%20Cover.png</image:loc>
+      <image:loc>https://wettentllc.github.io/milloauralanding/Receipts%20Single%20Cover.png</image:loc>
       <image:title>Receipts — Millo x Aura Single Cover</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://wettdynasty.com/founder-dj.jpg</image:loc>
+      <image:loc>https://wettentllc.github.io/milloauralanding/founder-dj.jpg</image:loc>
       <image:title>Jamal Bay Hef Hall — The Architect and Founder</image:title>
       <image:caption>Jamal Bay Hef Hall, founder of WETT Entertainment LLC</image:caption>
     </image:image>
