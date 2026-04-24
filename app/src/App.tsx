@@ -672,6 +672,76 @@ function MusicPlayerSection() {
   );
 }
 
+// ─── Service Sample Player ───
+function ServiceSamplePlayer() {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) { audioRef.current.pause(); } else { audioRef.current.play(); }
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!audioRef.current || !duration) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    audioRef.current.currentTime = ((e.clientX - rect.left) / rect.width) * duration;
+  };
+
+  const fmt = (t: number) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+
+  return (
+    <div className="max-w-2xl mx-auto mb-16">
+      <audio
+        ref={audioRef}
+        src="/DNNC (the place to be).mp3"
+        onTimeUpdate={() => audioRef.current && setCurrentTime(audioRef.current.currentTime)}
+        onLoadedMetadata={() => audioRef.current && setDuration(audioRef.current.duration)}
+        onEnded={() => setIsPlaying(false)}
+      />
+      <div className="glass rounded-2xl p-6 border border-white/10">
+        <div className="font-mono text-xs text-[#F48C06] tracking-wider mb-1 flex items-center gap-2">
+          <Headphones className="w-3 h-3" /> CLIENT_SAMPLE // HEAR THE WORK
+        </div>
+        <div className="flex items-center gap-4 mt-4">
+          <button
+            onClick={togglePlay}
+            className="w-12 h-12 rounded-full bg-gradient-to-r from-[#4361EE] to-[#F48C06] flex items-center justify-center hover:scale-105 transition-transform flex-shrink-0"
+          >
+            {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white ml-0.5" />}
+          </button>
+          <div className="flex-1">
+            <div className="font-heading text-sm font-bold text-white">DNNC (The Place to Be)</div>
+            <p className="font-mono text-[10px] text-gray-500">
+              Made for Delane's Natural Nail Care — San Leandro, CA
+            </p>
+            <div className="mt-2">
+              <div className="h-1 bg-gray-800 rounded-full overflow-hidden cursor-pointer" onClick={handleSeek}>
+                <div
+                  className="h-full bg-gradient-to-r from-[#4361EE] to-[#F48C06] rounded-full transition-all duration-150"
+                  style={{ width: duration ? `${(currentTime / duration) * 100}%` : '0%' }}
+                />
+              </div>
+              <div className="flex justify-between mt-1 font-mono text-[10px] text-gray-600">
+                <span>{fmt(currentTime)}</span>
+                <span>{fmt(duration)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="text-gray-500 text-xs mt-4 leading-relaxed">
+          This is what sonic architecture sounds like in the real world. We built this custom track for
+          <a href="https://www.yelp.com/biz/delanes-natural-nail-care-san-leandro" target="_blank" rel="noopener noreferrer" className="text-[#F48C06] hover:underline mx-1">Delane's Natural Nail Care</a>
+          in San Leandro, CA. Your brand could sound this good.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // ─── Service Suite Section ───
 function ServiceSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -731,6 +801,8 @@ function ServiceSection() {
             {logicMode ? 'B2B_SERVICE_SUITE // PRICING_ENABLED' : 'THE_BUSINESS // LOGIC_CHECK_TO_REVEAL'}
           </p>
         </div>
+
+        <ServiceSamplePlayer />
 
         <div ref={cardsRef} className="grid md:grid-cols-3 gap-6">
           {tiers.map((tier, i) => {
