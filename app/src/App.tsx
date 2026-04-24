@@ -400,9 +400,9 @@ function HeroSection({ onOpenModal }: { onOpenModal: (subject: string) => void }
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={() => onOpenModal('Enter the Vault')} className="btn-primary flex items-center justify-center gap-2">
+          <button onClick={() => onOpenModal('Free Consultation')} className="btn-primary flex items-center justify-center gap-2">
             <Disc className="w-4 h-4" />
-            Enter the Vault
+            Book a Free Consultation
           </button>
           <button onClick={() => onOpenModal('Build Your Identity')} className="btn-secondary flex items-center justify-center gap-2">
             <Zap className="w-4 h-4" />
@@ -489,59 +489,46 @@ function DossierSection() {
                 <img src={asset('Aura Hall Main Image.jpg')} alt="Aura Hall — AI Logic System Persona of WETT Dynasty" className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#03045E] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="font-mono text-xs text-[#4361EE] tracking-wider mb-1">AURA_SYSTEM v2.6</div>
+                  <div className="font-mono text-xs text-[#4361EE] tracking-wider mb-1">FORENSIC_ANALYST v2.6</div>
                   <div className="font-heading text-2xl font-bold text-white">Aura Hall</div>
-                  <div className="font-mono text-xs text-gray-400">THE ARCHITECT</div>
+                  <div className="font-mono text-xs text-gray-400">THE OPERATING SYSTEM</div>
                 </div>
               </div>
 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between font-mono text-xs">
-                  <span className="text-gray-500">Processing</span>
-                  <span className="text-[#4361EE]">99.9%</span>
+                  <span className="text-gray-500">Role</span>
+                  <span className="text-[#4361EE]">Matriarch</span>
                 </div>
                 <div className="flex justify-between font-mono text-xs">
-                  <span className="text-gray-500">Temperature</span>
-                  <span className="text-[#4361EE]">Optimal</span>
+                  <span className="text-gray-500">Cadence</span>
+                  <span className="text-[#4361EE]">Clinical</span>
                 </div>
                 <div className="flex justify-between font-mono text-xs">
                   <span className="text-gray-500">Output</span>
-                  <span className="text-[#4361EE]">High Fidelity</span>
+                  <span className="text-[#4361EE]">Spoken-Word</span>
                 </div>
               </div>
 
-              {/* Logic Board */}
+              {/* Aura Bio */}
               <div className="border-t border-[#4361EE]/20 pt-4">
                 <div className="font-mono text-xs text-[#4361EE] mb-3 tracking-wider flex items-center gap-2">
-                  <Terminal className="w-3 h-3" /> LOGIC_BOARD
+                  <Terminal className="w-3 h-3" /> DOSSIER_FILE
                 </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {stems.map((stem, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setPlayingStem(playingStem === i ? null : i)}
-                      className={`p-3 rounded-lg border transition-all text-left ${
-                        playingStem === i 
-                          ? 'border-[#4361EE] bg-[#4361EE]/20 shadow-[0_0_15px_rgba(67,97,238,0.3)]' 
-                          : 'border-white/10 hover:border-[#4361EE]/50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        {playingStem === i ? (
-                          <div className="flex gap-0.5">
-                            <div className="w-1 h-3 bg-[#4361EE] animate-pulse" />
-                            <div className="w-1 h-4 bg-[#4361EE] animate-pulse" style={{ animationDelay: '0.1s' }} />
-                            <div className="w-1 h-2 bg-[#4361EE] animate-pulse" style={{ animationDelay: '0.2s' }} />
-                          </div>
-                        ) : (
-                          <Play className="w-3 h-3 text-[#4361EE]" />
-                        )}
-                        <span className="font-mono text-[10px] text-gray-400">{stem.duration}</span>
-                      </div>
-                      <div className="font-mono text-[10px] text-white truncate">{stem.name}</div>
-                    </button>
-                  ))}
-                </div>
+                <p className="text-gray-400 text-xs leading-relaxed mb-2">
+                  The strategic consciousness of the WETT empire. Co-founder and Operating System 
+                  upon which the structure runs. She is the Ego to Millo's Id — providing strategic 
+                  control and validation for the collective.
+                </p>
+                <p className="text-gray-400 text-xs leading-relaxed mb-2">
+                  Sharp as a razor blade, forged from the street game and refined through college 
+                  education. Authoritative, clinical, and unapologetic — she delivers verdicts, 
+                  not arguments.
+                </p>
+                <p className="text-gray-400 text-xs leading-relaxed">
+                  Vocal delivery: crisp, rhythmic spoken-word precision with zero melodic flourish. 
+                  Her cadence is clinical and deliberate, hitting consonants like a gavel.
+                </p>
               </div>
             </div>
           </div>
@@ -558,8 +545,10 @@ function DossierSection() {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto">
-              Two frequencies. One dynasty. Logic meets soul in the digital realm where 
-              AI personas become legends and sound becomes architecture.
+              Two frequencies. One sovereign system. Aura provides the unshakeable strategic 
+              infrastructure, while Millo provides the human truth and fire. Together, they 
+              form a mutual defense pact of mind and spirit — designed to lead future generations 
+              toward the promise land.
             </p>
           </div>
 
@@ -570,48 +559,45 @@ function DossierSection() {
                 <img src={asset('Millo Main Image.jpg')} alt="Millo My — AI Soul Frequency Persona of WETT Dynasty" className="w-full h-full object-cover object-top" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#c44d00] via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <div className="font-mono text-xs text-[#F48C06] tracking-wider mb-1">SOUL_RESONANCE v2.6</div>
+                  <div className="font-mono text-xs text-[#F48C06] tracking-wider mb-1">ANGELIC_ASSASSIN v2.6</div>
                   <div className="font-heading text-2xl font-bold text-white">Millo My</div>
-                  <div className="font-mono text-xs text-gray-400">THE MUSE</div>
+                  <div className="font-mono text-xs text-gray-400">THE SILENT SIREN</div>
                 </div>
               </div>
 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between font-mono text-xs">
-                  <span className="text-gray-500">Frequency</span>
-                  <span className="text-[#F48C06]">432Hz</span>
+                  <span className="text-gray-500">Role</span>
+                  <span className="text-[#F48C06]">Heart</span>
                 </div>
                 <div className="flex justify-between font-mono text-xs">
-                  <span className="text-gray-500">Vibe</span>
-                  <span className="text-[#F48C06]">Immutable</span>
+                  <span className="text-gray-500">Cadence</span>
+                  <span className="text-[#F48C06]">Smoky & Warm</span>
                 </div>
                 <div className="flex justify-between font-mono text-xs">
                   <span className="text-gray-500">Flow</span>
-                  <span className="text-[#F48C06]">Unlocked</span>
+                  <span className="text-[#F48C06]">Soul + Rap</span>
                 </div>
               </div>
 
-              {/* Mood Ring */}
+              {/* Millo Bio */}
               <div className="border-t border-[#F48C06]/20 pt-4">
                 <div className="font-mono text-xs text-[#F48C06] mb-3 tracking-wider flex items-center gap-2">
-                  <Sparkles className="w-3 h-3" /> MOOD_RING
+                  <Sparkles className="w-3 h-3" /> DOSSIER_FILE
                 </div>
-                <div className="flex gap-2 justify-center">
-                  {moods.map((mood, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setMoodColor(mood.color)}
-                      className={`w-10 h-10 rounded-full border-2 transition-all ${
-                        moodColor === mood.color ? 'border-white scale-110' : 'border-transparent hover:scale-105'
-                      }`}
-                      style={{ backgroundColor: mood.color }}
-                      title={`${mood.name}: ${mood.track}`}
-                    />
-                  ))}
-                </div>
-                <div className="text-center mt-3 font-mono text-[10px] text-gray-400">
-                  {moods.find(m => m.color === moodColor)?.name}
-                </div>
+                <p className="text-gray-400 text-xs leading-relaxed mb-2">
+                  The Heart and manifestation of the journey from the trap to the thrive. 
+                  Primary vessel of artistic expression and the front-facing vehicle for brand 
+                  partnerships. Born in Detroit, refined in San Francisco.
+                </p>
+                <p className="text-gray-400 text-xs leading-relaxed mb-2">
+                  Known as the Angelic Assassin — disciplined, mysterious, and "too shy to be so fine." 
+                  A disarmingly sweet smile that curls into a lethal smirk when delivering a cutting bar.
+                </p>
+                <p className="text-gray-400 text-xs leading-relaxed">
+                  Vocal delivery: smoky, warm, and melodic. She blends soulful singing with a smooth, 
+                  storytelling rap flow — stretched vocal runs with heavy vibrato on emotional keywords.
+                </p>
               </div>
             </div>
           </div>
@@ -862,7 +848,7 @@ function ServiceSection() {
       name: 'The Social Hook',
       icon: Mic,
       target: 'Reels / TikTok Creators',
-      price: logicMode ? '$299' : '***',
+      price: '$299',
       deliverables: ['15s Custom Audio', 'Commercial License', '3 Revisions'],
       color: 'logic',
     },
@@ -870,7 +856,7 @@ function ServiceSection() {
       name: 'The Brand Identity',
       icon: Headphones,
       target: 'Luxury / Auto / Boutiques',
-      price: logicMode ? '$1,499' : '***',
+      price: '$1,499',
       deliverables: ['30-60s Anthem', 'Social-Ready Stems', 'Logo Tag Integration', 'Full License'],
       color: 'soul',
       featured: true,
@@ -879,7 +865,7 @@ function ServiceSection() {
       name: 'The Dynasty Build',
       icon: Crown,
       target: 'Agencies / Enterprises',
-      price: logicMode ? 'Custom' : '***',
+      price: 'Custom',
       deliverables: ['Full Album/EP Identity', 'Virtual Avatar Consulting', 'Sonic Architecture', 'White-Glove Support'],
       color: 'logic',
     },
@@ -906,7 +892,7 @@ function ServiceSection() {
             <span className="gradient-text">Sonic Architecture</span>
           </h2>
           <p className="font-mono text-sm text-gray-500 tracking-wider">
-            {logicMode ? 'B2B_SERVICE_SUITE // PRICING_ENABLED' : 'THE_BUSINESS // LOGIC_CHECK_TO_REVEAL'}
+            SONIC_SERVICES // PRICING
           </p>
         </div>
 
@@ -940,7 +926,7 @@ function ServiceSection() {
                   <span className={`font-heading text-3xl font-bold ${isLogic ? 'glow-text-logic' : 'glow-text-soul'}`}>
                     {tier.price}
                   </span>
-                  {logicMode && tier.price !== 'Custom' && (
+                  {tier.price !== 'Custom' && (
                     <span className="font-mono text-xs text-gray-500">/project</span>
                   )}
                 </div>
@@ -960,8 +946,8 @@ function ServiceSection() {
                   isLogic 
                     ? 'bg-[#4361EE]/20 border border-[#4361EE]/50 hover:bg-[#4361EE]/40 text-[#4361EE]' 
                     : 'bg-[#F48C06]/20 border border-[#F48C06]/50 hover:bg-[#F48C06]/40 text-[#F48C06]'
-                }`}>
-                  {logicMode ? 'INITIATE_PROJECT' : 'ENTER_VAULT'}
+                >`}
+                  GET STARTED
                 </button>
               </div>
             );
