@@ -848,7 +848,7 @@ function ServiceSection() {
       name: 'The Social Hook',
       icon: Mic,
       target: 'Reels / TikTok Creators',
-      price: '$299',
+      price: '$50',
       deliverables: ['15s Custom Audio', 'Commercial License', '3 Revisions'],
       color: 'logic',
     },
@@ -856,18 +856,26 @@ function ServiceSection() {
       name: 'The Brand Identity',
       icon: Headphones,
       target: 'Luxury / Auto / Boutiques',
-      price: '$1,499',
+      price: '$150',
       deliverables: ['30-60s Anthem', 'Social-Ready Stems', 'Logo Tag Integration', 'Full License'],
       color: 'soul',
-      featured: true,
     },
     {
       name: 'The Dynasty Build',
       icon: Crown,
       target: 'Agencies / Enterprises',
-      price: 'Custom',
+      price: '$300',
       deliverables: ['Full Album/EP Identity', 'Virtual Avatar Consulting', 'Sonic Architecture', 'White-Glove Support'],
       color: 'logic',
+    },
+    {
+      name: 'The WETT Package',
+      icon: Sparkles,
+      target: 'Visionaries / Founders',
+      price: '$1,500',
+      deliverables: ['Everything from All Tiers', 'Full Character Build & Branding', 'Build Your Own AI Twin', 'AI Artist or AI Content Creator', 'Full Technical Support', 'Social Media AI Deployment'],
+      color: 'soul',
+      featured: true,
     },
   ];
 
@@ -898,7 +906,7 @@ function ServiceSection() {
 
         <ServiceSamplePlayer />
 
-        <div ref={cardsRef} className="grid md:grid-cols-3 gap-6">
+        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {tiers.map((tier, i) => {
             const Icon = tier.icon;
             const isLogic = tier.color === 'logic';
