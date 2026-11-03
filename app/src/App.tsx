@@ -156,7 +156,7 @@ function App() {
         </section>
 
         <section id="story" className="wg-story">
-          <div className="wg-story-image"><img src={img('hero-banner.jpg')} alt="WETT Girls creative universe" loading="lazy"/></div>
+          <div className="wg-story-image wg-story-artists"><img src={img('Millo Main Image.jpg')} alt="Millo My, WETT Girls artist portrait" loading="lazy"/><img src={img('Aura Hall Main Image.jpg')} alt="Aura Hall, WETT Girls artist portrait" loading="lazy"/></div>
           <div className="wg-story-content">
             <p className="wg-kicker">03 / THE ORIGIN</p>
             <h2>Made in the Bay.<br/><em>Built for what's next.</em></h2>
