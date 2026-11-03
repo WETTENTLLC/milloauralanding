@@ -10,7 +10,7 @@ const unitedMasters = 'https://unitedmasters.com/a/millo-aura';
 const songInquiry = 'mailto:millomy2@gmail.com';
 const spotify = 'https://open.spotify.com/search/WETT%20Girls';
 const apple = 'https://music.apple.com/us/search?term=WETT%20Girls';
-const officialLogo = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/1db060d6-e115-4967-99da-a7f37bd63d96.webp';
+const officialLogo = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/18b0e5f2-ad4e-44bb-8579-c0c5093cd954.png';
 const official880 = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/b3e04655-ec07-4b50-b959-a85210ced4f3.png';
 const officialEros = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/13719639-9f4a-4958-9341-75f75a71e43d.png';
 const officialLiquidAssets = 'https://united-masters.imgix.net/mHVVQUFXNpFD?auto=compress%2Cformat&fit=crop&h=900&q=90&w=900';
@@ -75,8 +75,8 @@ function App() {
           <div className="wg-hero-inner">
             <div className="wg-eyebrow"><span className="wg-dot"/> EAST OAKLAND ROOTS · A NEW MUSIC REALITY</div>
             <div className="wg-hero-monogram" aria-label="Official MA monogram for Millo My and Aura Hall"><img src={officialLogo} alt="Official metallic gold MA monogram of Millo My and Aura Hall" /></div><h1 className="wg-accessible-title">WETT Girls — Millo My and Aura Hall</h1>
-            <p className="wg-hero-names">MILLO MY <span>×</span> AURA HALL</p>
-            <p className="wg-hero-copy">Two distinct voices. One fearless vision. Original music, cinematic identities and a new kind of artist story born in the Bay.</p>
+            
+            <p className="wg-hero-copy">Millo My &amp; Aura Hall. Two distinct voices, one fearless vision. Human-written music, AI-presented performances — born from the Bay.</p>
             <div className="wg-actions">
               <a className="wg-btn wg-btn-primary" href="#music">Hear the music <ArrowUpRight size={19}/></a>
               <a className="wg-btn wg-btn-line" href="#story">Meet the vision <ArrowRight size={19}/></a>
