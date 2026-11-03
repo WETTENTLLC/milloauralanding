@@ -7,6 +7,7 @@ const img = (name: string) => base + encodeURIComponent(name);
 const instagram = 'https://www.instagram.com/millo_aura/';
 const direct = 'https://wettentertainment.gumroad.com/l/milloaura2026';
 const unitedMasters = 'https://unitedmasters.com/a/millo-aura';
+const songInquiry = 'mailto:millomy2@gmail.com';
 const spotify = 'https://open.spotify.com/search/WETT%20Girls';
 const apple = 'https://music.apple.com/us/search?term=WETT%20Girls';
 
@@ -177,6 +178,17 @@ function App() {
             <p>One new song at a time, WETT Girls are opening the doors to their sound. Behind-the-scenes introductions, original cover art, new perspectives and music made to be experienced — not just scrolled past.</p>
             <div className="wg-challenge-label"><span className="wg-dot"/> FOLLOW THE 30-DAY SONG CHALLENGE ON INSTAGRAM</div>
             <a href={instagram} target="_blank" rel="noreferrer" className="wg-btn wg-btn-primary"><Instagram size={18}/> Follow @millo_aura <ArrowUpRight size={18}/></a>
+            <aside className="wg-inquiry-card" aria-label="WETT Girls song and collaboration inquiries">
+              <span className="wg-kicker">BEHIND THE MUSIC</span>
+              <h3>Want a song? Let's talk.</h3>
+              <p>Hear something in the 30-day challenge you want before release? Interested in a custom song or a collaboration? Reach the songwriter and creative director, Bay Hef.</p>
+              <div className="wg-inquiry-links">
+                <a href="mailto:millomy2@gmail.com?subject=Unreleased%20WETT%20Girls%20song%20inquiry">Unreleased song <ArrowUpRight size={16}/></a>
+                <a href="mailto:millomy2@gmail.com?subject=Custom%20song%20request">Custom song <ArrowUpRight size={16}/></a>
+                <a href="mailto:millomy2@gmail.com?subject=WETT%20Girls%20collaboration">Collaborate <ArrowUpRight size={16}/></a>
+              </div>
+              <small>All inquiries: <a href={songInquiry}>millomy2@gmail.com</a>. Availability, permissions and terms are discussed individually.</small>
+            </aside>
           </div>
           <div className="wg-challenge-visual">
             <div className="wg-30">30<span>×</span></div><div>SONGS.<br/>STORIES.<br/>ONE NEW ERA.</div>
