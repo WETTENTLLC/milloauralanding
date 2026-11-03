@@ -6,6 +6,7 @@ const base = import.meta.env.BASE_URL;
 const img = (name: string) => base + encodeURIComponent(name);
 const instagram = 'https://www.instagram.com/millo_aura/';
 const direct = 'https://wettentertainment.gumroad.com/l/milloaura2026';
+const unitedMasters = 'https://unitedmasters.com/a/millo-aura';
 const spotify = 'https://open.spotify.com/search/WETT%20Girls';
 const apple = 'https://music.apple.com/us/search?term=WETT%20Girls';
 
@@ -81,7 +82,7 @@ function App() {
           <span className="wg-vertical">THE NEW AGE TOWN SOUND / 2026</span>
         </section>
 
-        <div className="wg-ticker" aria-label="WETT Girls message"><div>NOT JUST A SOUND <span>✦</span> A WHOLE NEW WAY TO BE AN ARTIST <span>✦</span> MILL0 MY + AURA HALL <span>✦</span> OAKLAND TO EVERYWHERE <span>✦</span></div></div>
+        <div className="wg-ticker" aria-label="WETT Girls message"><div>NOT JUST A SOUND <span>✦</span> A WHOLE NEW WAY TO BE AN ARTIST <span>✦</span> MILLO MY + AURA HALL <span>✦</span> OAKLAND TO EVERYWHERE <span>✦</span></div></div>
 
         <section id="artists" className="wg-section wg-artists">
           <div className="wg-section-heading">
@@ -126,14 +127,16 @@ function App() {
               </div>
               <div className="wg-release-info"><div><span>{r.year} · {r.note}</span><h3>{r.name}</h3></div><span>{r.count}</span></div>
               <p>{r.text}</p>
+              <div className="wg-release-links"><a href={unitedMasters} target="_blank" rel="noreferrer">Stream release <ArrowUpRight size={15}/></a>{r.name === 'LIQUID ASSETS' && <a href={direct} target="_blank" rel="noreferrer">Buy directly <ArrowUpRight size={15}/></a>}</div>
             </article>)}
           </div>
           <div className="wg-listen-panel">
             <div><span className="wg-kicker">LISTEN YOUR WAY</span><h3>Find your next favorite.</h3><p>Stream on your platform of choice or support independent music directly from the artist.</p></div>
             <div className="wg-platforms">
-              <a href={spotify} target="_blank" rel="noreferrer">Find on Spotify <ArrowUpRight size={16}/></a>
-              <a href={apple} target="_blank" rel="noreferrer">Find on Apple Music <ArrowUpRight size={16}/></a>
-              <a href={direct} target="_blank" rel="noreferrer">Direct from artist <ArrowUpRight size={16}/></a>
+              <a href={unitedMasters} target="_blank" rel="noreferrer">All releases · UnitedMasters <ArrowUpRight size={16}/></a>
+              <a href={spotify} target="_blank" rel="noreferrer">Search Spotify <ArrowUpRight size={16}/></a>
+              <a href={apple} target="_blank" rel="noreferrer">Search Apple Music <ArrowUpRight size={16}/></a>
+              <a href={direct} target="_blank" rel="noreferrer">Buy Liquid Assets directly <ArrowUpRight size={16}/></a>
             </div>
           </div>
           <div className="wg-sample">
@@ -186,7 +189,7 @@ function App() {
           <p>Hear the music, share the sound, follow the women and help shape what comes next.</p>
           <div className="wg-actions">
             <a className="wg-btn wg-btn-primary" href={instagram} target="_blank" rel="noreferrer">Follow the girls <Instagram size={18}/></a>
-            <a className="wg-btn wg-btn-line" href={direct} target="_blank" rel="noreferrer">Support the music <Disc3 size={18}/></a>
+            <a className="wg-btn wg-btn-line" href={direct} target="_blank" rel="noreferrer">Buy Liquid Assets <Disc3 size={18}/></a>
             <button className="wg-btn wg-btn-ghost" onClick={copyLink}>{copied ? 'Link copied!' : 'Share this page'} <ArrowUpRight size={17}/></button>
           </div>
         </section>
