@@ -69,12 +69,11 @@ function App() {
 
       <main>
         <section id="top" className="wg-hero">
-          <div className="wg-hero-picture wg-hero-millo"><img src={img('Millo Main Image.jpg')} alt="Millo My, one half of WETT Girls" fetchPriority="high"/></div>
-          <div className="wg-hero-picture wg-hero-aura"><img src={img('Aura Hall Main Image.jpg')} alt="Aura Hall, one half of WETT Girls" fetchPriority="high"/></div>
+          <div className="wg-hero-noir" aria-hidden="true"><span className="wg-hero-halo"/></div>
           <div className="wg-hero-shade"/>
           <div className="wg-hero-inner">
             <div className="wg-eyebrow"><span className="wg-dot"/> EAST OAKLAND ROOTS · A NEW MUSIC REALITY</div>
-            <div className="wg-hero-logo-frame"><img src={officialLogo} alt="WETT Girls — Millo My and Aura Hall official logo" /></div><h1 className="wg-accessible-title">WETT Girls — Millo My and Aura Hall</h1>
+            <div className="wg-hero-monogram" aria-label="Official MA monogram for Millo My and Aura Hall"><img src={officialLogo} alt="MA — Millo My and Aura Hall official gold monogram" /></div><h1 className="wg-accessible-title">WETT Girls — Millo My and Aura Hall</h1>
             <p className="wg-hero-names">MILLO MY <span>×</span> AURA HALL</p>
             <p className="wg-hero-copy">Two distinct voices. One fearless vision. Original music, cinematic identities and a new kind of artist story born in the Bay.</p>
             <div className="wg-actions">
