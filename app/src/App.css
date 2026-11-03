@@ -58,3 +58,9 @@
 .wg-hero-monogram img{position:absolute;left:0;top:50%;width:100%;height:auto;max-width:none;transform:translateY(-44%);object-fit:unset;display:block}
 .wg-hero-copy{max-width:650px}.wg-hero .wg-actions{justify-content:center}.wg-scroll{left:50%;transform:translateX(-50%)}.wg-hero .wg-hero-names{margin-top:5px}
 @media(max-width:650px){.wg-hero{min-height:730px;height:auto}.wg-hero-inner{padding:145px 20px 110px;margin:0}.wg-hero-monogram{width:100%;height:245px;margin:0 0 14px}.wg-hero-monogram img{transform:translateY(-41%)}.wg-hero .wg-hero-names{font-size:1rem}.wg-hero-copy{max-width:335px}.wg-hero .wg-actions{justify-content:center}.wg-hero .wg-scroll{bottom:24px}.wg-hero-halo{width:85vw;height:85vw}}
+
+/* The original square logo includes a caption below the monogram.
+   Show only the top ~58% so no lettering beneath MA is visible. */
+.wg-hero-monogram{width:min(90vw,640px);height:auto;aspect-ratio:1.73;max-height:370px}
+.wg-hero-monogram img{top:0;left:0;transform:none;width:100%;height:auto}
+@media(max-width:650px){.wg-hero-monogram{width:min(88vw,440px);height:auto;aspect-ratio:1.73}.wg-hero-monogram img{top:0;transform:none}}
