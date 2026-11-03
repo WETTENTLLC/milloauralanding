@@ -154,11 +154,12 @@ function App() {
           <div className="wg-story-content">
             <p className="wg-kicker">03 / THE ORIGIN</p>
             <h2>Made in the Bay.<br/><em>Built for what's next.</em></h2>
-            <p>WETT Girls began with an idea from Bay Hef, The Curator: what if an artist could be built from imagination, original songwriting and emerging creative technology — without losing the culture and human perspective behind the music?</p>
-            <p>That idea became Millo My and Aura Hall. Two AI-presented musical characters with different voices, looks and personalities, developed through the creative direction of WETT Entertainment.</p>
-            <p>They represent more than a technical experiment. Their music speaks about boundaries, relationships, money, ambition, pressure, independence and the life happening behind the perfect picture.</p>
-            <blockquote>“The technology gives the vision a face. The music gives it a reason to exist.”</blockquote>
-            <span className="wg-story-signature">BAY HEF · THE CURATOR</span>
+            <p>WETT Girls are Millo My and Aura Hall, two AI-presented artists with a sound rooted in Oakland, California. Their personalities and performances are digital, but their songwriting and creative direction begin with a human: Jamal King Hall, known as Bay Hef, The Curator.</p>
+            <p>Bay Hef writes the lyrics and orchestrates the music. He uses years of experience creating beats, engineering, recording and producing to direct each sound, rhythm, arrangement and vocal delivery through AI music technology. The AI performs his creative vision; the songwriting and musical decisions come from the artist behind the system.</p>
+            <p>These women were created to help change the narrative around AI music and modern music alike. Millo and Aura can be funny, fearless and outspoken while telling stories about relationships, respecting a partner, smart decisions, business, independence, confidence and living well. They aim to reach young listeners with music they recognize and a positive perspective they can grow with.</p>
+            <p>WETT Girls are proof that years of musical knowledge still matter in a technology-driven era. The art is still the art. The future simply gives creators another instrument.</p>
+            <blockquote>“The art is still the art. We are just part of the future.”</blockquote>
+            <span className="wg-story-signature">JAMAL KING HALL · BAY HEF, THE CURATOR · SONGWRITER &amp; CREATIVE DIRECTOR</span>
           </div>
         </section>
 
