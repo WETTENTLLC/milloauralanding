@@ -10,7 +10,7 @@ const unitedMasters = 'https://unitedmasters.com/a/millo-aura';
 const songInquiry = 'mailto:millomy2@gmail.com';
 const spotify = 'https://open.spotify.com/search/WETT%20Girls';
 const apple = 'https://music.apple.com/us/search?term=WETT%20Girls';
-const officialLogo = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/0131ad69-8297-4c71-bedf-02f0a8e3ec59.png';
+const officialLogo = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/1db060d6-e115-4967-99da-a7f37bd63d96.webp';
 const official880 = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/b3e04655-ec07-4b50-b959-a85210ced4f3.png';
 const officialEros = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/13719639-9f4a-4958-9341-75f75a71e43d.png';
 
@@ -73,7 +73,7 @@ function App() {
           <div className="wg-hero-shade"/>
           <div className="wg-hero-inner">
             <div className="wg-eyebrow"><span className="wg-dot"/> EAST OAKLAND ROOTS · A NEW MUSIC REALITY</div>
-            <div className="wg-hero-monogram" aria-label="Official MA monogram for Millo My and Aura Hall"><img src={officialLogo} alt="MA — Millo My and Aura Hall official gold monogram" /></div><h1 className="wg-accessible-title">WETT Girls — Millo My and Aura Hall</h1>
+            <div className="wg-hero-monogram" aria-label="Official MA monogram for Millo My and Aura Hall"><img src={officialLogo} alt="Official metallic gold MA monogram of Millo My and Aura Hall" /></div><h1 className="wg-accessible-title">WETT Girls — Millo My and Aura Hall</h1>
             <p className="wg-hero-names">MILLO MY <span>×</span> AURA HALL</p>
             <p className="wg-hero-copy">Two distinct voices. One fearless vision. Original music, cinematic identities and a new kind of artist story born in the Bay.</p>
             <div className="wg-actions">
@@ -112,6 +112,27 @@ function App() {
                 <p>The fearless voice. Direct, outspoken, commanding — bringing sharp perspective and undeniable attitude to every record.</p>
               </div>
             </article>
+          </div>
+          <div className="wg-deep-bios">
+            <article className="wg-bio wg-bio-millo">
+              <span className="wg-kicker">THE HEART / THE SILENT SIREN</span>
+              <h3>Millo My —<br/><em>the angelic assassin.</em></h3>
+              <p>In her story, Millo's journey begins in Detroit and finds its polish in San Francisco. Her Cambodian, Brazilian and Black roots shape a perspective that is both multicultural and unmistakably her own. The 5'4" self-described “Hood Princess” brings ripped denim, lingerie-inspired fashion, layered gold jewelry and a quiet confidence that never needs an announcement.</p>
+              <p>Disciplined, mysterious and “too shy to be so fine,” Millo moves between a sweet smile and a knowing smirk. Her warm, smoky mezzo carries the melody; her stretched R&amp;B runs and emotional vibrato give way to witty, closely observed rap. She is the heart of the duo — the voice that feels what the world puts people through, and tells the story of surviving it.</p>
+              <span className="wg-bio-signature">THE SOUL · EMOTION · STREET WISDOM</span>
+            </article>
+            <article className="wg-bio wg-bio-aura">
+              <span className="wg-kicker">THE MIND / THE MATRIARCH</span>
+              <h3>Aura Hall —<br/><em>the operating system.</em></h3>
+              <p>Written into existence from East Oakland, Aura is the duo's strategic mind: street instinct refined into boardroom precision. Her aesthetic is minimalist luxury — a structured blazer, confident monochrome styling and a flash of gold — with the poise of someone who already knows her next move.</p>
+              <p>At 5'7" in her character story, Aura is sharp, measured and impossible to rattle. She delivers verdicts, not arguments. Her lower, authoritative talk-rap and deliberate consonants land like a gavel, challenging Millo's smoky melodic hooks with rhythmic precision. If Millo feels the weight of a moment, Aura sees its structure and makes the decision.</p>
+              <span className="wg-bio-signature">THE LOGIC · STRATEGY · BOUNDARIES</span>
+            </article>
+          </div>
+          <div className="wg-duo-dynamic">
+            <span className="wg-kicker">TWO MINDS. ONE SOUND.</span>
+            <h3>Logic meets soul.</h3>
+            <p>Aura examines the engine. Millo tells the story of the driver. Together they turn lived emotion and strategic clarity into one sound — music that can be beautiful, sharp, vulnerable and unapologetically independent.</p>
           </div>
         </section>
 
