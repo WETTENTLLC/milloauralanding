@@ -45,3 +45,5 @@
 
 /* Artist portraits replace legacy corporate banner */
 .wg-story-artists{display:grid;grid-template-columns:1fr 1fr;gap:4px}.wg-story-artists img{height:100%;width:100%;min-width:0;object-fit:cover;object-position:center 20%}
+
+.wg-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:30px}.wg-faq-grid article{background:#171713;border:1px solid #39372f;padding:24px}.wg-faq-grid h3{font-size:21px;margin-bottom:11px}.wg-faq-grid p{font-size:15px;color:#c8c4ba;line-height:1.65}@media(max-width:650px){.wg-faq-grid{grid-template-columns:1fr}}
