@@ -201,6 +201,16 @@ function App() {
           </div>
         </section>
 
+        <section className="wg-section wg-faq" id="questions" aria-label="WETT Girls artist questions">
+          <p className="wg-kicker">THE ARTISTS / EXPLAINED</p>
+          <h2>Real vision. <em>New music.</em></h2>
+          <div className="wg-faq-grid">
+            <article><h3>Who are WETT Girls?</h3><p>Millo My and Aura Hall are an Oakland-rooted, AI-presented female hip-hop and R&amp;B duo.</p></article>
+            <article><h3>Who writes their music?</h3><p>Jamal King Hall, also known as Bay Hef, writes the lyrics and directs the sound, production and AI-assisted performances.</p></article>
+            <article><h3>Which albums and EPs are out?</h3><p>Liquid Assets is the 30-track album. Eros and 880 are EPs. Find the releases through UnitedMasters.</p></article>
+            <article><h3>Can I collaborate or request a song?</h3><p>For songwriting, unreleased music or collaborations, email millomy2@gmail.com.</p></article>
+          </div>
+        </section>
         <section className="wg-final-cta">
           <span className="wg-kicker">DON'T JUST WATCH THE FUTURE</span>
           <h2>BE PART<br/>OF IT.</h2>
