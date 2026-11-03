@@ -87,3 +87,33 @@
 .wg-duo-dynamic h3{font-size:clamp(2.5rem,5vw,5.5rem);margin:0 0 14px}
 .wg-duo-dynamic p{max-width:760px;margin:auto;line-height:1.8;font-size:16px}
 @media(max-width:760px){.wg-deep-bios{grid-template-columns:1fr}.wg-hero{min-height:700px}.wg-hero-inner{padding:125px 20px 110px}.wg-hero-monogram{width:min(100%,480px)}.wg-official-brand{width:52px;height:40px}.wg-brand{font-size:18px}}
+
+/* MA Hero repair 2026-11-03: a cut-out monogram sits on one full-width editorial backdrop. */
+.wg-hero{position:relative;min-height:760px;height:100svh;max-height:970px;overflow:hidden;background:#0a0a0a;isolation:isolate}
+.wg-hero-noir{position:absolute;inset:0;z-index:-3;overflow:hidden;background:
+radial-gradient(ellipse at 48% 37%,rgba(151,110,54,.26) 0%,transparent 48%),
+radial-gradient(ellipse at 4% 86%,rgba(166,114,46,.22) 0%,transparent 35%),
+radial-gradient(ellipse at 97% 92%,rgba(191,135,56,.16) 0%,transparent 43%),
+linear-gradient(121deg,#070809 3%,#1c1815 25%,#0a0c0d 58%,#17120f 81%,#08090a 100%)}
+.wg-hero-noir:before{content:"";position:absolute;inset:0;opacity:.34;pointer-events:none;background-image:
+repeating-linear-gradient(27deg,transparent 0px,transparent 2px,#c8a4780a 3px,transparent 5px),
+repeating-linear-gradient(117deg,transparent 0px,transparent 6px,#ffffff06 7px,transparent 10px)}
+.wg-hero-noir:after{content:"";position:absolute;inset:-45% -17%;pointer-events:none;background:
+conic-gradient(from 215deg at 31% 52%,transparent 0deg,transparent 33deg,rgba(208,162,83,.11) 47deg,rgba(90,54,25,.03) 55deg,transparent 77deg,transparent 360deg),
+conic-gradient(from 35deg at 75% 72%,transparent 0deg,transparent 28deg,rgba(227,179,103,.14) 43deg,rgba(82,49,23,.02) 57deg,transparent 75deg,transparent 360deg);filter:blur(19px);transform:rotate(-7deg)}
+.wg-hero-halo{display:none}
+.wg-hero-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(0deg,#090b0b 0%,transparent 21%),linear-gradient(180deg,#0708098f 0%,transparent 20%);pointer-events:none}
+.wg-hero-inner{width:100%;max-width:1100px;height:100%;min-height:0;margin:0 auto;padding:126px 25px 96px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.wg-hero-monogram{position:relative;display:block;width:min(76vw,830px);max-width:none;height:auto;max-height:57vh;aspect-ratio:979/685;overflow:visible;flex:none;background:none!important;border:none!important;box-shadow:none!important;border-radius:0!important;filter:drop-shadow(0 18px 29px #000a) drop-shadow(0 0 37px #ce9f4830);margin:-10px 0 11px}
+.wg-hero-monogram img{display:block;position:static;width:100%;height:100%;object-fit:contain;transform:none;max-width:none;filter:none}
+.wg-hero .wg-eyebrow{font-size:11px;letter-spacing:.28em;color:#e0c798;text-shadow:0 1px 15px #000}
+.wg-hero .wg-hero-copy{max-width:575px;font-size:clamp(15px,1.5vw,17px);font-weight:500;color:#e1dbcf;text-shadow:0 1px 17px #000;margin:0}
+.wg-hero .wg-actions{justify-content:center;margin-top:25px}
+.wg-hero .wg-btn{backdrop-filter:blur(7px)}
+.wg-hero .wg-scroll{left:50%;transform:translateX(-50%);bottom:24px;color:#d8c4a2;white-space:nowrap}
+.wg-hero .wg-vertical{display:none}
+.wg-header{background:linear-gradient(180deg,#050606dc,transparent 100%);z-index:35}
+.wg-official-brand{background:transparent;border:0;width:65px;height:51px;object-fit:contain}
+.wg-footer-brand{background:transparent;border:0;object-fit:contain}
+@media(max-width:760px){.wg-hero{min-height:690px;height:100svh;max-height:900px}.wg-hero-inner{padding:118px 18px 96px}.wg-hero-monogram{width:min(93vw,580px);max-height:49vh;aspect-ratio:979/685;margin:10px 0 10px}.wg-hero .wg-eyebrow{font-size:9px;letter-spacing:.15em}.wg-hero .wg-hero-copy{font-size:15px;max-width:340px}.wg-official-brand{width:48px;height:40px}.wg-hero .wg-actions{flex-direction:column;width:100%;gap:10px}.wg-hero .wg-actions .wg-btn{width:min(100%,340px);min-height:48px}.wg-hero .wg-scroll{font-size:9px;bottom:15px;white-space:normal;text-align:center;justify-content:center}.wg-hero-noir:after{filter:blur(27px)}}
+@media(max-height:690px) and (min-width:761px){.wg-hero{height:auto;min-height:680px}.wg-hero-inner{padding-top:108px;padding-bottom:70px}.wg-hero-monogram{width:min(55vw,650px)}}
