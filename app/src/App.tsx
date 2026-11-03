@@ -13,6 +13,7 @@ const apple = 'https://music.apple.com/us/search?term=WETT%20Girls';
 const officialLogo = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/1db060d6-e115-4967-99da-a7f37bd63d96.webp';
 const official880 = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/b3e04655-ec07-4b50-b959-a85210ced4f3.png';
 const officialEros = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/13719639-9f4a-4958-9341-75f75a71e43d.png';
+const officialLiquidAssets = 'https://united-masters.imgix.net/mHVVQUFXNpFD?auto=compress%2Cformat&fit=crop&h=900&q=90&w=900';
 
 const releases = [
   { name: 'LIQUID ASSETS', note: 'The debut statement', count: '30 TRACKS', year: '2026', art: 'liquid', text: 'Thirty records. A whole world of moods, stories, pressure, confidence and possibility.' },
@@ -144,6 +145,7 @@ function App() {
           <div className="wg-release-grid">
             {releases.map(r => <article className="wg-release" key={r.name}>
               <div className={'wg-release-art ' + r.art}>
+                {r.name === 'LIQUID ASSETS' && <img className="wg-release-cover" src={officialLiquidAssets} alt="Liquid Assets — official 30-track WETT Girls album artwork" loading="lazy"/>}
                 {r.name === '880' && <img className="wg-release-cover" src={official880} alt="Official 880 EP cover by WETT Girls" loading="lazy"/>}
                 {r.name === 'EROS' && <img className="wg-release-cover" src={officialEros} alt="Official Eros EP cover by WETT Girls" loading="lazy"/>}
                 {r.name === 'LIQUID ASSETS' && <span className="wg-art-watermark">WG</span>}
@@ -153,7 +155,7 @@ function App() {
               </div>
               <div className="wg-release-info"><div><span>{r.year} · {r.note}</span><h3>{r.name}</h3></div><span>{r.count}</span></div>
               <p>{r.text}</p>
-              <div className="wg-release-links"><a href={unitedMasters} target="_blank" rel="noreferrer">Stream release <ArrowUpRight size={15}/></a>{r.name === 'LIQUID ASSETS' && <a href={direct} target="_blank" rel="noreferrer">Buy directly <ArrowUpRight size={15}/></a>}</div>
+              <div className="wg-release-links"><a href={r.name === 'LIQUID ASSETS' ? 'https://unitedmasters.com/m/liquid-assets-2' : r.name === 'EROS' ? 'https://unitedmasters.com/m/eros-10' : 'https://unitedmasters.com/m/880-1'} target="_blank" rel="noreferrer">Stream release <ArrowUpRight size={15}/></a>{r.name === 'LIQUID ASSETS' && <a href={direct} target="_blank" rel="noreferrer">Buy directly <ArrowUpRight size={15}/></a>}</div>
             </article>)}
           </div>
           <div className="wg-listen-panel">
