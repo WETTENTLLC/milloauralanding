@@ -42,3 +42,6 @@
 .wg-inquiry-card small{font-size:11px;line-height:1.5;color:#b3ad9e}
 .wg-inquiry-card small>a{color:#f0dcae;text-decoration:underline}
 @media(max-width:650px){.wg-hero-logo-frame{width:clamp(210px,71vw,340px)}.wg-official-brand{width:42px;height:42px}.wg-inquiry-card{padding:19px}}
+
+/* Artist portraits replace legacy corporate banner */
+.wg-story-artists{display:grid;grid-template-columns:1fr 1fr;gap:4px}.wg-story-artists img{height:100%;width:100%;min-width:0;object-fit:cover;object-position:center 20%}
