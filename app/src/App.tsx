@@ -10,6 +10,9 @@ const unitedMasters = 'https://unitedmasters.com/a/millo-aura';
 const songInquiry = 'mailto:millomy2@gmail.com';
 const spotify = 'https://open.spotify.com/search/WETT%20Girls';
 const apple = 'https://music.apple.com/us/search?term=WETT%20Girls';
+const officialLogo = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/0131ad69-8297-4c71-bedf-02f0a8e3ec59.png';
+const official880 = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/b3e04655-ec07-4b50-b959-a85210ced4f3.png';
+const officialEros = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/13719639-9f4a-4958-9341-75f75a71e43d.png';
 
 const releases = [
   { name: 'LIQUID ASSETS', note: 'The debut statement', count: '30 TRACKS', year: '2026', art: 'liquid', text: 'Thirty records. A whole world of moods, stories, pressure, confidence and possibility.' },
@@ -51,7 +54,7 @@ function App() {
       <a className="wg-skip" href="#music">Skip to the music</a>
       <header className="wg-header">
         <a href="#top" className="wg-brand" aria-label="WETT Girls — home">
-          <span className="wg-brand-symbol">W<span>✦</span>G</span>
+          <img className="wg-official-brand" src={officialLogo} alt="WETT Girls official artist logo" />
           <span>WETT <strong>GIRLS</strong><small>MILLO MY &amp; AURA HALL</small></span>
         </a>
         <nav className={'wg-nav ' + (menuOpen ? 'is-open' : '')} aria-label="Main navigation">
@@ -71,7 +74,7 @@ function App() {
           <div className="wg-hero-shade"/>
           <div className="wg-hero-inner">
             <div className="wg-eyebrow"><span className="wg-dot"/> EAST OAKLAND ROOTS · A NEW MUSIC REALITY</div>
-            <h1>WETT<br/><em>GIRLS.</em></h1>
+            <div className="wg-hero-logo-frame"><img src={officialLogo} alt="WETT Girls — Millo My and Aura Hall official logo" /></div><h1 className="wg-accessible-title">WETT Girls — Millo My and Aura Hall</h1>
             <p className="wg-hero-names">MILLO MY <span>×</span> AURA HALL</p>
             <p className="wg-hero-copy">Two distinct voices. One fearless vision. Original music, cinematic identities and a new kind of artist story born in the Bay.</p>
             <div className="wg-actions">
@@ -121,10 +124,12 @@ function App() {
           <div className="wg-release-grid">
             {releases.map(r => <article className="wg-release" key={r.name}>
               <div className={'wg-release-art ' + r.art}>
-                <span className="wg-art-watermark">WG</span>
-                <span className="wg-art-label">WETT GIRLS</span>
-                <strong>{r.name}</strong>
-                <span className="wg-art-caption">{r.count}</span>
+                {r.name === '880' && <img className="wg-release-cover" src={official880} alt="Official 880 EP cover by WETT Girls" loading="lazy"/>}
+                {r.name === 'EROS' && <img className="wg-release-cover" src={officialEros} alt="Official Eros EP cover by WETT Girls" loading="lazy"/>}
+                {r.name === 'LIQUID ASSETS' && <span className="wg-art-watermark">WG</span>}
+                {r.name === 'LIQUID ASSETS' && <span className="wg-art-label">WETT GIRLS</span>}
+                {r.name === 'LIQUID ASSETS' && <strong>{r.name}</strong>}
+                {r.name === 'LIQUID ASSETS' && <span className="wg-art-caption">{r.count}</span>}
               </div>
               <div className="wg-release-info"><div><span>{r.year} · {r.note}</span><h3>{r.name}</h3></div><span>{r.count}</span></div>
               <p>{r.text}</p>
@@ -208,7 +213,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="wg-footer"><a className="wg-footer-logo" href="#top">WETT GIRLS<span>✦</span></a><p>Millo My &amp; Aura Hall · Original music. Human vision. New possibilities.</p><div><a href={instagram} target="_blank" rel="noreferrer">Instagram</a><a href="#music">Music</a><a href="#story">The story</a></div><small>CREATED &amp; CURATED BY BAY HEF · WETT ENTERTAINMENT</small></footer>
+      <footer className="wg-footer"><a className="wg-footer-logo" href="#top"><img className="wg-footer-brand" src={officialLogo} alt="WETT Girls official logo"/> WETT GIRLS</a><p>Millo My &amp; Aura Hall · Original music. Human vision. New possibilities.</p><div><a href={instagram} target="_blank" rel="noreferrer">Instagram</a><a href="#music">Music</a><a href="#story">The story</a></div><small>CREATED &amp; CURATED BY BAY HEF · WETT ENTERTAINMENT</small></footer>
     </div>
   );
 }
