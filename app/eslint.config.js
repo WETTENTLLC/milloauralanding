@@ -15,6 +15,10 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
+    rules: {
+      // shadcn-style UI primitives intentionally export contexts/helpers beside components.
+      'react-refresh/only-export-components': 'off',
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
