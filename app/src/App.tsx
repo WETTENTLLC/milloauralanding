@@ -62,7 +62,7 @@ function App() {
           <a href="#artists" onClick={() => setMenuOpen(false)}>The girls</a>
           <a href="#music" onClick={() => setMenuOpen(false)}>Music</a>
           <a href="#story" onClick={() => setMenuOpen(false)}>Our story</a>
-          <a href="#challenge" onClick={() => setMenuOpen(false)}>30 days</a>
+          <a href="#challenge" onClick={() => setMenuOpen(false)}>Fan Championship</a>
           <a href={instagram} target="_blank" rel="noreferrer" className="wg-nav-follow">Follow <ArrowUpRight size={15}/></a>
         </nav>
         <button className="wg-mobile-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen}>{menuOpen ? <X/> : <Menu/>}</button>
@@ -200,15 +200,16 @@ function App() {
 
         <section id="challenge" className="wg-section wg-challenge">
           <div className="wg-challenge-copy">
-            <p className="wg-kicker">05 / THE MUSIC MOVEMENT</p>
-            <h2>30 days.<br/><em>30 songs.</em></h2>
-            <p>One new song at a time, WETT Girls are opening the doors to their sound. Behind-the-scenes introductions, original cover art, new perspectives and music made to be experienced — not just scrolled past.</p>
-            <div className="wg-challenge-label"><span className="wg-dot"/> FOLLOW THE 30-DAY SONG CHALLENGE ON INSTAGRAM</div>
-            <a href={instagram} target="_blank" rel="noreferrer" className="wg-btn wg-btn-primary"><Instagram size={18}/> Follow @millo_aura <ArrowUpRight size={18}/></a>
+            <p className="wg-kicker">05 / THE FAN CHAMPIONSHIP</p>
+            <h2>30 songs.<br/><em>One favorite.</em></h2>
+            <p>The 30 Songs. One Favorite. challenge is complete: Millo My and Aura Hall created and released 30 original songs in 30 days. Now the spotlight moves to the fans.</p>
+            <div className="wg-challenge-label"><span className="wg-dot"/> OFFICIAL TOP 8 FAN CHAMPIONSHIP</div>
+            <p>Listen back, choose the records that stayed with you, and help decide the official Top 8. The winning song earns a full music video or a special visual. Follow @millo_aura for the official song lineup, voting details and championship updates.</p>
+            <a href={instagram} target="_blank" rel="noreferrer" className="wg-btn wg-btn-primary"><Instagram size={18}/> Follow the Fan Championship <ArrowUpRight size={18}/></a>
             <aside className="wg-inquiry-card" aria-label="WETT Girls song and collaboration inquiries">
               <span className="wg-kicker">BEHIND THE MUSIC</span>
-              <h3>Want a song? Let's talk.</h3>
-              <p>Hear something in the 30-day challenge you want before release? Interested in a custom song or a collaboration? Reach the songwriter and creative director, Bay Hef.</p>
+              <h3>Want to work with WETT Girls?</h3>
+              <p>For songwriting, unreleased music, custom song requests or collaborations, reach the songwriter and creative director, Bay Hef.</p>
               <div className="wg-inquiry-links">
                 <a href="mailto:millomy2@gmail.com?subject=Unreleased%20WETT%20Girls%20song%20inquiry">Unreleased song <ArrowUpRight size={16}/></a>
                 <a href="mailto:millomy2@gmail.com?subject=Custom%20song%20request">Custom song <ArrowUpRight size={16}/></a>
@@ -218,8 +219,8 @@ function App() {
             </aside>
           </div>
           <div className="wg-challenge-visual">
-            <div className="wg-30">30<span>×</span></div><div>SONGS.<br/>STORIES.<br/>ONE NEW ERA.</div>
-            <p>FOLLOW THE JOURNEY</p>
+            <div className="wg-30">TOP<span>8</span></div><div>FANS.<br/>FAVORITES.<br/>ONE WINNER.</div>
+            <p>THE WINNING SONG GETS THE VISUAL</p>
           </div>
         </section>
 
