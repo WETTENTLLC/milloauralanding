@@ -4,6 +4,8 @@ import './App.css';
 
 const base = import.meta.env.BASE_URL;
 const img = (name: string) => base + encodeURIComponent(name);
+const milloProfile = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/0b75ed0c-1afe-4188-ae56-9f4023898bee.webp';
+const auraProfile = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/cf81b408-0e27-4a57-8928-e659a6e8ad4c.webp';
 const instagram = 'https://www.instagram.com/millo_aura/';
 const direct = 'https://wettentertainment.gumroad.com/l/milloaura2026';
 const unitedMasters = 'https://unitedmasters.com/a/millo-aura';
@@ -96,7 +98,7 @@ function App() {
           </div>
           <div className="wg-artist-grid">
             <article className="wg-artist-card wg-artist-one">
-              <img src={img('Millo Main Image.jpg')} alt="Millo My portrait" loading="lazy"/>
+              <img src={milloProfile} alt="Millo My portrait" loading="lazy"/>
               <div className="wg-artist-shade"/>
               <div className="wg-artist-copy">
                 <span>01 / QUIET POWER</span>
@@ -105,7 +107,7 @@ function App() {
               </div>
             </article>
             <article className="wg-artist-card wg-artist-two">
-              <img src={img('Aura Hall Main Image.jpg')} alt="Aura Hall portrait" loading="lazy"/>
+              <img src={auraProfile} alt="Aura Hall portrait" loading="lazy"/>
               <div className="wg-artist-shade"/>
               <div className="wg-artist-copy">
                 <span>02 / BOLD PRESENCE</span>
@@ -178,7 +180,7 @@ function App() {
         </section>
 
         <section id="story" className="wg-story">
-          <div className="wg-story-image wg-story-artists"><img src={img('Millo Main Image.jpg')} alt="Millo My, WETT Girls artist portrait" loading="lazy"/><img src={img('Aura Hall Main Image.jpg')} alt="Aura Hall, WETT Girls artist portrait" loading="lazy"/></div>
+          <div className="wg-story-image wg-story-artists"><img src={milloProfile} alt="Millo My, WETT Girls artist portrait" loading="lazy"/><img src={auraProfile} alt="Aura Hall, WETT Girls artist portrait" loading="lazy"/></div>
           <div className="wg-story-content">
             <p className="wg-kicker">03 / THE ORIGIN</p>
             <h2>Made in the Bay.<br/><em>Built for what's next.</em></h2>
