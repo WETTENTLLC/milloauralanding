@@ -74,9 +74,9 @@ export default function VotingChampionship() {
   async function sendMagicLink(e: React.FormEvent) {
     e.preventDefault(); setError(''); setMessage(''); setSending(true);
     try {
-      const response = await fetch(SUPABASE_URL + '/auth/v1/otp', {
+      const response = await fetch(SUPABASE_URL + '/auth/v1/otp?redirect_to=' + encodeURIComponent(window.location.href.split('#')[0]), {
         method: 'POST', headers: apiHeaders(),
-        body: JSON.stringify({ email, create_user: true, email_redirect_to: window.location.href.split('#')[0] }),
+        body: JSON.stringify({ email, create_user: true,  }),
       });
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
@@ -139,6 +139,6 @@ export default function VotingChampionship() {
       {message && <p className="wg-voting-success" role="status">{message}</p>}
       {error && <p className="wg-voting-error" role="alert">{error}</p>}
     </div>}
-    <div className="wg-voting-trust"><ShieldCheck size={16}/><span>Verified-email voting · One ballot per person per round · Private ballot records</span></div>
+    <div className="wg-voting-trust"><ShieldCheck size={16}/><span>Verified-email voting · One ballot per verified account per round · Private ballot records</span></div>
   </section>;
 }
