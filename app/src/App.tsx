@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X } from 'lucide-react';
 import './App.css';
+import VotingChampionship from './VotingChampionship';
 
 const base = import.meta.env.BASE_URL;
 const img = (name: string) => base + encodeURIComponent(name);
@@ -206,8 +207,9 @@ function App() {
             <h2>30 songs.<br/><em>One favorite.</em></h2>
             <p>The 30 Songs. One Favorite. challenge is complete: Millo My and Aura Hall created and released 30 original songs in 30 days. Now the spotlight moves to the fans.</p>
             <div className="wg-challenge-label"><span className="wg-dot"/> OFFICIAL TOP 8 FAN CHAMPIONSHIP</div>
-            <p>Listen back, choose the records that stayed with you, and help decide the official Top 8. The winning song earns a full music video or a special visual. Follow @millo_aura for the official song lineup, voting details and championship updates.</p>
-            <a href={instagram} target="_blank" rel="noreferrer" className="wg-btn wg-btn-primary"><Instagram size={18}/> Follow the Fan Championship <ArrowUpRight size={18}/></a>
+            <p>Listen back, choose the records that stayed with you, and help decide the official Top 8. The winning song earns a full music video or a special visual. The official ballot will open here when a voting round is announced.</p>
+            <a href="#official-ballot" className="wg-btn wg-btn-primary">Go to the official ballot <ArrowDown size={18}/></a>
+            <VotingChampionship />
             <aside className="wg-inquiry-card" aria-label="WETT Girls song and collaboration inquiries">
               <span className="wg-kicker">BEHIND THE MUSIC</span>
               <h3>Want to work with WETT Girls?</h3>
