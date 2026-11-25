@@ -118,10 +118,31 @@
     document.head.appendChild(script);
   }
 
+  function clearAnalyticsCookies() {
+    var names = document.cookie.split(';').map(function (entry) { return entry.split('=')[0].trim(); })
+      .filter(function (name) { return name === '_ga' || name.indexOf('_ga_') === 0; });
+    var paths = ['/', '/milloauralanding'];
+    var domains = ['', location.hostname, '.' + location.hostname];
+    names.forEach(function (name) {
+      paths.forEach(function (path) {
+        domains.forEach(function (domain) {
+          var domainPart = domain ? '; domain=' + domain : '';
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; max-age=0; path=' + path + domainPart;
+        });
+      });
+    });
+  }
+
   function saveChoice(choice) {
+    var analyticsWasLoaded = analyticsLoaded;
     try { window.localStorage.setItem(KEY, choice); } catch (e) { /* Choice applies for this page view only if storage is unavailable. */ }
     banner.hidden = true;
-    if (choice === 'accepted') loadAnalytics();
+    if (choice === 'accepted') {
+      loadAnalytics();
+    } else {
+      clearAnalyticsCookies();
+      if (analyticsWasLoaded) window.location.reload();
+    }
   }
 
   accept.addEventListener('click', function () { saveChoice('accepted'); });
@@ -137,6 +158,9 @@
   if (saved === 'accepted') {
     banner.hidden = true;
     loadAnalytics();
+  } else if (saved === 'rejected') {
+    banner.hidden = true;
+    clearAnalyticsCookies();
   } else {
     banner.hidden = false;
   }
