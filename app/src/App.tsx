@@ -250,7 +250,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="wg-footer"><a className="wg-footer-logo" href="#top"><img className="wg-footer-brand" src={officialLogo} alt="WETT Girls official logo"/> WETT GIRLS</a><p>Millo My &amp; Aura Hall · Original music. Human vision. New possibilities.</p><div><a href={instagram} target="_blank" rel="noreferrer">Instagram</a><a href="#music">Music</a><a href="#story">The story</a></div><small>CREATED &amp; CURATED BY BAY HEF · WETT ENTERTAINMENT</small></footer>
+      <footer className="wg-footer"><a className="wg-footer-logo" href="#top"><img className="wg-footer-brand" src={officialLogo} alt="WETT Girls official logo"/> WETT GIRLS</a><p>Millo My &amp; Aura Hall · Original music. Human vision. New possibilities.</p><div><a href={instagram} target="_blank" rel="noreferrer">Instagram</a><a href="#music">Music</a><a href="#story">The story</a><a href={base + 'privacy.html'}>Privacy</a><a href={base + 'terms.html'}>Terms</a><button type="button" onClick={() => (window as Window & { openWettCookieSettings?: () => void }).openWettCookieSettings?.()}>Cookie settings</button></div><small>CREATED &amp; CURATED BY BAY HEF · WETT ENTERTAINMENT</small></footer>
     </div>
   );
 }

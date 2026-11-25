@@ -24,6 +24,7 @@ export default function VotingChampionship() {
   const [songs, setSongs] = useState<Song[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [email, setEmail] = useState('');
+  const [ageConfirmed, setAgeConfirmed] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [token, setToken] = useState('');
   const [loading, setLoading] = useState(true);
@@ -72,7 +73,9 @@ export default function VotingChampionship() {
   }, [configured]);
 
   async function sendMagicLink(e: React.FormEvent) {
-    e.preventDefault(); setError(''); setMessage(''); setSending(true);
+    e.preventDefault(); setError(''); setMessage('');
+    if (!ageConfirmed) { setError('Please confirm that you are at least 13 years old to register for voting.'); return; }
+    setSending(true);
     try {
       const response = await fetch(SUPABASE_URL + '/auth/v1/otp?redirect_to=' + encodeURIComponent(window.location.href.split('#')[0]), {
         method: 'POST', headers: apiHeaders(),
@@ -112,7 +115,7 @@ export default function VotingChampionship() {
     <div className="wg-voting-heading">
       <span className="wg-voting-kicker">THE OFFICIAL FAN BALLOT</span>
       <h3>Make your picks.<br/><em>Make your voice count.</em></h3>
-      <p>One verified email. One ballot per round. Your selections are recorded privately and securely.</p>
+      <p>One verified email. One ballot per round. Your verified account is linked internally to your selections to prevent duplicate voting; ballots are not publicly displayed.</p>
     </div>
     {!configured ? <div className="wg-voting-state"><LockKeyhole/><strong>Official voting is being prepared.</strong><p>The secure ballot will appear here when the site connection is configured. Voting is not open yet.</p></div>
     : loading ? <div className="wg-voting-state"><RefreshCw className="wg-spin"/><p>Checking the official voting schedule…</p></div>
@@ -132,9 +135,10 @@ export default function VotingChampionship() {
         </label>)}
       </div>
       {!user ? <form className="wg-voter-form" onSubmit={sendMagicLink}>
+        <label className="wg-age-confirm"><input type="checkbox" checked={ageConfirmed} onChange={e => setAgeConfirmed(e.target.checked)}/><span>I confirm that I am at least 13 years old.</span></label>
         <label htmlFor="wg-voter-email">Email address</label>
-        <div className="wg-email-row"><Mail size={18}/><input id="wg-voter-email" type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com"/><button type="submit" disabled={sending}>{sending ? 'Sending…' : 'Verify email'}</button></div>
-        <small>We’ll email you a secure sign-in link. You must verify your email before voting.</small>
+        <div className="wg-email-row"><Mail size={18}/><input id="wg-voter-email" type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com"/><button type="submit" disabled={sending || !ageConfirmed}>{sending ? 'Sending…' : 'Verify email'}</button></div>
+        <small>We’ll email you a secure sign-in link. You must verify your email before voting. By continuing, you agree to the <a href="terms.html" target="_blank" rel="noreferrer">Voting Terms</a> and acknowledge the <a href="privacy.html" target="_blank" rel="noreferrer">Privacy Notice</a>. Your account and ballot are linked internally for one-vote enforcement; voting is not anonymous.</small>
       </form> : <div className="wg-submit-row"><span>{selected.length} of {round.max_selections} selected</span><button onClick={submitBallot} disabled={sending || selected.length === 0 || submitted}>{submitted ? 'Ballot recorded' : sending ? 'Submitting…' : 'Submit my ballot'}</button></div>}
       {message && <p className="wg-voting-success" role="status">{message}</p>}
       {error && <p className="wg-voting-error" role="alert">{error}</p>}

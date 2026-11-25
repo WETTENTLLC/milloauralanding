@@ -4,14 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Google tag (gtag.js) — WETT Girls GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-J1FZPQHYJ2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-J1FZPQHYJ2');
-</script>
+<!-- Optional Google Analytics loads only after the visitor accepts analytics cookies. -->
 <meta name="theme-color" content="#080909" />
 <title>WETT Girls | Millo My &amp; Aura Hall</title>
 <meta name="description" content="Meet WETT Girls: Millo My and Aura Hall, an Oakland hip-hop and R&amp;B duo. Explore their music, artist stories and Fan Championship." />
@@ -78,6 +71,77 @@
 </head>
 <body>
 <div id="root"></div>
+<section id="wett-cookie-banner" class="wett-cookie-banner" role="dialog" aria-labelledby="wett-cookie-title" aria-describedby="wett-cookie-copy" hidden>
+  <div class="wett-cookie-inner">
+    <div>
+      <p id="wett-cookie-title" class="wett-cookie-title">Your privacy matters</p>
+      <p id="wett-cookie-copy">WETT Girls uses optional Google Analytics to understand site traffic. Analytics stays off unless you choose “Accept analytics.” You can reject it or change your choice at any time. <a href="privacy.html">Read our Privacy Notice</a>.</p>
+    </div>
+    <div class="wett-cookie-actions">
+      <button type="button" id="wett-cookie-reject">Reject optional</button>
+      <button type="button" id="wett-cookie-accept">Accept analytics</button>
+    </div>
+  </div>
+</section>
+<style>
+.wett-cookie-banner{position:fixed;z-index:9999;left:16px;right:16px;bottom:16px;padding:18px 20px;background:#171713;color:#f7f1e7;border:1px solid #b99d70;box-shadow:0 12px 42px #000b;font:14px/1.55 Arial,sans-serif}
+.wett-cookie-banner[hidden]{display:none}
+.wett-cookie-inner{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.wett-cookie-title{font-weight:700;margin:0 0 4px;letter-spacing:.03em}
+#wett-cookie-copy{margin:0;color:#ded7ca;font-size:13px}
+.wett-cookie-banner a{color:#f0dcae;text-decoration:underline}
+.wett-cookie-actions{display:flex;gap:9px;flex-wrap:wrap;flex:none}
+.wett-cookie-actions button{border:1px solid #d6bb86;padding:10px 14px;font-weight:700;cursor:pointer;background:transparent;color:#f7f1e7}
+#wett-cookie-accept{background:#d6bb86;color:#111;border-color:#d6bb86}
+.wett-cookie-actions button:focus-visible{outline:3px solid white;outline-offset:3px}
+@media(max-width:680px){.wett-cookie-inner{display:block}.wett-cookie-actions{margin-top:12px}.wett-cookie-actions button{flex:1}.wett-cookie-banner{left:8px;right:8px;bottom:8px;padding:15px}}
+</style>
+<script>
+(function () {
+  var KEY = 'wett-girls-analytics-consent-v1';
+  var MEASUREMENT_ID = 'G-J1FZPQHYJ2';
+  var banner = document.getElementById('wett-cookie-banner');
+  var accept = document.getElementById('wett-cookie-accept');
+  var reject = document.getElementById('wett-cookie-reject');
+  var analyticsLoaded = false;
+
+  function loadAnalytics() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', MEASUREMENT_ID, { anonymize_ip: true });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
+
+  function saveChoice(choice) {
+    try { window.localStorage.setItem(KEY, choice); } catch (e) { /* Choice applies for this page view only if storage is unavailable. */ }
+    banner.hidden = true;
+    if (choice === 'accepted') loadAnalytics();
+  }
+
+  accept.addEventListener('click', function () { saveChoice('accepted'); });
+  reject.addEventListener('click', function () { saveChoice('rejected'); });
+
+  window.openWettCookieSettings = function () {
+    banner.hidden = false;
+    accept.focus();
+  };
+
+  var saved = null;
+  try { saved = window.localStorage.getItem(KEY); } catch (e) { saved = null; }
+  if (saved === 'accepted') {
+    banner.hidden = true;
+    loadAnalytics();
+  } else {
+    banner.hidden = false;
+  }
+})();
+</script>
 <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
