@@ -25,7 +25,7 @@ type CatalogSong = { id: string; challenge_number: number; title: string };
 
 // Exact public Instagram permalinks matched to WETT Girls' 30-day song posts.
 const songInstagramPosts: Record<number, string> = {
-  1: 'https://www.instagram.com/reel/Dd-R6Bnuwct/',
+  1: 'https://www.instagram.com/p/Dd-R6Bnuwct/',
   2: 'https://www.instagram.com/reel/DeA0XLdO7iJ/',
   3: 'https://www.instagram.com/reel/DeGjda2ulF2/',
   4: 'https://www.instagram.com/reel/DeGjmzUuIEv/',
