@@ -119,3 +119,39 @@ conic-gradient(from 35deg at 75% 72%,transparent 0deg,transparent 28deg,rgba(227
 @media(max-height:690px) and (min-width:761px){.wg-hero{height:auto;min-height:680px}.wg-hero-inner{padding-top:108px;padding-bottom:70px}.wg-hero-monogram{width:min(55vw,650px)}}
 
 .wg-footer>div button{background:transparent;border:0;padding:0;color:inherit;font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px}.wg-footer>div button:focus-visible{outline:2px solid #d6bb86;outline-offset:4px}
+
+
+/* WETT Girls full catalog listening grids */
+.wg-song-library{margin:42px 0 38px;padding:clamp(22px,3.5vw,42px);border:1px solid #544630;background:linear-gradient(145deg,#171612,#0c0e0d)}
+.wg-song-library-heading{max-width:700px;margin:0 auto 26px;text-align:center}
+.wg-song-library-heading h3,.wg-contest-song-library h3{font-size:clamp(2rem,4vw,3.6rem);line-height:1.04;letter-spacing:-.05em;margin:10px 0 12px}
+.wg-song-library-heading h3 em,.wg-contest-song-library h3 em{font-style:normal;color:#d6bb86}
+.wg-song-library-heading p,.wg-contest-song-library>p{color:#c8c2b6;line-height:1.7;margin:0 auto;max-width:680px}
+.wg-track-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.wg-track-grid-compact{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:19px}
+.wg-track-card{min-width:0;overflow:hidden;border:1px solid #4b4233;background:#11120f;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.wg-track-card:hover{transform:translateY(-4px);border-color:#c9aa72;box-shadow:0 12px 30px #0007}
+.wg-track-art{display:block;position:relative;aspect-ratio:1/1;overflow:hidden;background:#201b13}
+.wg-track-art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#07080608 28%,#070806d9 100%)}
+.wg-track-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s ease;filter:saturate(.72) contrast(1.05)}
+.wg-track-card:hover .wg-track-art img{transform:scale(1.045)}
+.wg-track-number{position:absolute;z-index:1;left:11px;top:11px;padding:5px 8px;background:#10100dd9;border:1px solid #b6955f;color:#e6d2a7;font-size:9px;letter-spacing:.14em;font-weight:800}
+.wg-track-play{position:absolute;z-index:1;right:12px;bottom:12px;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#d6bb86;color:#12120f;box-shadow:0 0 20px #d6bb8650}
+.wg-track-card-copy{padding:13px 13px 15px}
+.wg-track-card-copy h3{font-size:clamp(13px,1.25vw,16px);line-height:1.22;min-height:2.45em;margin:0 0 7px;color:#f4eee2}
+.wg-track-credit{display:block;color:#a99b7e;font-size:9px;letter-spacing:.12em;font-weight:800;margin-bottom:12px}
+.wg-track-actions{display:flex;flex-direction:column;gap:7px}
+.wg-track-actions a{display:flex;align-items:center;justify-content:space-between;gap:7px;text-decoration:none;font-size:11px;line-height:1.3;font-weight:800}
+.wg-track-listen{padding:9px 10px;background:#d6bb86;color:#15140f}
+.wg-track-social{padding:8px 9px;border:1px solid #5b4a32;color:#e4d4b3}
+.wg-track-note{display:block;margin-top:8px;color:#a59c8d;font-size:10px;line-height:1.4}
+.wg-catalog-state{padding:24px;border:1px solid #514630;background:#11120f;color:#cfc5b2;text-align:center}
+.wg-contest-song-library{margin:24px 0 30px;padding:clamp(18px,3vw,30px);border:1px solid #59482c;background:#11120f}
+.wg-contest-song-library>.wg-kicker{color:#d6bb86}
+.wg-contest-song-library h3{font-size:clamp(1.8rem,3.5vw,3rem)}
+.wg-track-grid-compact .wg-track-card-copy{padding:11px}
+.wg-track-grid-compact .wg-track-card-copy h3{font-size:13px}
+.wg-track-grid-compact .wg-track-actions a{font-size:10px}
+@media(max-width:1000px){.wg-track-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.wg-track-grid-compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.wg-song-library{padding:20px 14px}.wg-track-grid,.wg-track-grid-compact{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.wg-track-card-copy{padding:10px}.wg-track-card-copy h3{font-size:13px}.wg-track-actions a{font-size:10px}.wg-track-play{width:36px;height:36px}}
+@media(max-width:360px){.wg-track-grid,.wg-track-grid-compact{grid-template-columns:1fr 1fr}}
