@@ -18,18 +18,128 @@ const official880 = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYT
 const officialEros = 'https://d2ol7oe51mr4n9.cloudfront.net/user_30zhnNWOXaygqeYTbhEO5mnIHNL/13719639-9f4a-4958-9341-75f75a71e43d.png';
 const officialLiquidAssets = 'https://united-masters.imgix.net/mHVVQUFXNpFD?auto=compress%2Cformat&fit=crop&h=900&q=90&w=900';
 
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+
+type CatalogSong = { id: string; challenge_number: number; title: string };
+
+// Exact public Instagram permalinks matched to WETT Girls' 30-day song posts.
+const songInstagramPosts: Record<number, string> = {
+  1: 'https://www.instagram.com/reel/Dd-R6Bnuwct/',
+  2: 'https://www.instagram.com/reel/DeA0XLdO7iJ/',
+  3: 'https://www.instagram.com/reel/DeGjda2ulF2/',
+  4: 'https://www.instagram.com/reel/DeGjmzUuIEv/',
+  5: 'https://www.instagram.com/reel/DeKTTEdOm0G/',
+  6: 'https://www.instagram.com/reel/DeNTEZpSRIs/',
+  7: 'https://www.instagram.com/reel/DeP6Z-Gk1uQ/',
+  9: 'https://www.instagram.com/reel/Deaa5QQuoXb/',
+  10: 'https://www.instagram.com/reel/DegmyWMOOeC/',
+  17: 'https://www.instagram.com/reel/DeyeAwWO8XI/',
+  18: 'https://www.instagram.com/reel/DfBdQ9uOUZM/',
+  19: 'https://www.instagram.com/reel/DfERoj4OeLW/',
+  20: 'https://www.instagram.com/reel/DfSuqPXS0Rj/',
+  21: 'https://www.instagram.com/reel/DfS2vEqyHMr/',
+  22: 'https://www.instagram.com/reel/DfUH1GPOxu9/',
+  23: 'https://www.instagram.com/reel/DfUIjz1OrZv/',
+  24: 'https://www.instagram.com/reel/DfZN-7EOrgG/',
+  26: 'https://www.instagram.com/reel/Dfbr7Q2O_0R/',
+  27: 'https://www.instagram.com/reel/DfbseW6OqZw/',
+  28: 'https://www.instagram.com/reel/Df70fPDT_6P/',
+  29: 'https://www.instagram.com/reel/DgLJroYTSkL/',
+};
+
 const releases = [
+
   { name: 'LIQUID ASSETS', note: 'The debut statement', count: '30 TRACKS', year: '2026', art: 'liquid', text: 'Thirty records. A whole world of moods, stories, pressure, confidence and possibility.' },
   { name: '880', note: 'The late-night ride', count: 'EP', year: '2026', art: 'eight', text: 'After-hours energy, the Bay Area, and the road that keeps moving.' },
   { name: 'EROS', note: 'The softer frequency', count: 'EP', year: '2026', art: 'eros', text: 'A different side of the duo — intimacy, tension and feeling.' },
 ];
 
 function App() {
+
+  useEffect(() => {
+    const controller = new AbortController();
+    async function loadCatalog() {
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        setCatalogLoading(false);
+        return;
+      }
+      try {
+        const response = await fetch(
+          SUPABASE_URL + '/rest/v1/competition_songs?select=id,challenge_number,title&order=challenge_number.asc',
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+            },
+            signal: controller.signal,
+          }
+        );
+        if (!response.ok) throw new Error('Song catalog request failed.');
+        const rows = await response.json() as CatalogSong[];
+        setCatalogSongs(rows);
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.error('Unable to load the WETT Girls song catalog:', error);
+          setCatalogSongs([]);
+        }
+      } finally {
+        if (!controller.signal.aborted) setCatalogLoading(false);
+      }
+    }
+    void loadCatalog();
+    return () => controller.abort();
+  }, []);
+
+
+function SongCatalogGrid({ songs, loading, compact = false }: { songs: CatalogSong[]; loading: boolean; compact?: boolean }) {
+  if (loading) {
+    return <div className="wg-catalog-state" role="status">Loading the 30-song catalog…</div>;
+  }
+  if (!songs.length) {
+    return <div className="wg-catalog-state" role="status">The song catalog is temporarily unavailable. Please try again shortly.</div>;
+  }
+
+  return (
+    <div className={'wg-track-grid ' + (compact ? 'wg-track-grid-compact' : '')} aria-label="WETT Girls 30-song catalog">
+      {songs.map(song => {
+        const postUrl = songInstagramPosts[song.challenge_number];
+        const listenUrl = postUrl || 'https://unitedmasters.com/m/liquid-assets-2';
+        return (
+          <article className="wg-track-card" key={song.id}>
+            <a className="wg-track-art" href={listenUrl} target="_blank" rel="noreferrer" aria-label={`Listen to ${song.title}`}>
+              <img src={officialLiquidAssets} alt="" loading="lazy" />
+              <span className="wg-track-number">TRACK {String(song.challenge_number).padStart(2, '0')}</span>
+              <span className="wg-track-play"><Play size={23} fill="currentColor"/></span>
+            </a>
+            <div className="wg-track-card-copy">
+              <h3>{song.title}</h3>
+              <span className="wg-track-credit">MILLO MY × AURA HALL</span>
+              <div className="wg-track-actions">
+                <a className="wg-track-listen" href={listenUrl} target="_blank" rel="noreferrer">
+                  {postUrl ? 'Listen on Instagram' : 'Listen on UnitedMasters'} <ArrowUpRight size={14}/>
+                </a>
+                <a className="wg-track-social" href={postUrl || instagram} target="_blank" rel="noreferrer">
+                  <Instagram size={14}/> {postUrl ? 'Like · Comment · Share' : 'Find on Instagram'}
+                </a>
+              </div>
+              {!postUrl && <small className="wg-track-note">Dedicated Instagram post link not yet matched.</small>}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const playerRef = useRef<HTMLAudioElement>(null);
   const [copied, setCopied] = useState(false);
+  const [catalogSongs, setCatalogSongs] = useState<CatalogSong[]>([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
 
   useEffect(() => {
     const player = playerRef.current;
@@ -145,6 +255,14 @@ function App() {
             <div><p className="wg-kicker">02 / DISCOGRAPHY</p><h2>Press play.<br/><em>Meet the music.</em></h2></div>
             <p>From late-night anthems to unfiltered conversations about real life, every release reveals another side of WETT Girls.</p>
           </div>
+          <div className="wg-song-library">
+            <div className="wg-song-library-heading">
+              <span className="wg-kicker">THE COMPLETE 30-SONG CHALLENGE</span>
+              <h3>Pick a track.<br/><em>Tap in and get involved.</em></h3>
+              <p>Choose any song to listen. Matched Instagram posts open directly so you can like, comment and share with the girls.</p>
+            </div>
+            <SongCatalogGrid songs={catalogSongs} loading={catalogLoading}/>
+          </div>
           <div className="wg-release-grid">
             {releases.map(r => <article className="wg-release" key={r.name}>
               <div className={'wg-release-art ' + r.art}>
@@ -206,6 +324,14 @@ function App() {
             <p className="wg-kicker">05 / THE FAN CHAMPIONSHIP</p>
             <h2>30 songs.<br/><em>One favorite.</em></h2>
             <p>The 30 Songs. One Favorite. challenge is complete: Millo My and Aura Hall created and released 30 original songs in 30 days. Now the spotlight moves to the fans.</p>
+
+            <div className="wg-contest-song-library">
+              <span className="wg-kicker">LISTEN BEFORE YOU VOTE</span>
+              <h3>All 30 songs. <em>Your next favorite.</em></h3>
+              <p>Browse the full lineup below. Open a song's Instagram post to listen, react, comment or share. Tracks without a matched post link open the official album stream and WETT Girls profile.</p>
+              <SongCatalogGrid songs={catalogSongs} loading={catalogLoading} compact/>
+            </div>
+
             <div className="wg-challenge-label"><span className="wg-dot"/> OFFICIAL TOP 8 FAN CHAMPIONSHIP</div>
             <p>Listen back, choose the records that stayed with you, and help decide the official Top 8. The winning song earns a full music video or a special visual. The official ballot will open here when a voting round is announced.</p>
             <a href="#official-ballot" className="wg-btn wg-btn-primary">Go to the official ballot <ArrowDown size={18}/></a>
