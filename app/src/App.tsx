@@ -55,43 +55,6 @@ const releases = [
   { name: 'EROS', note: 'The softer frequency', count: 'EP', year: '2026', art: 'eros', text: 'A different side of the duo — intimacy, tension and feeling.' },
 ];
 
-function App() {
-
-  useEffect(() => {
-    const controller = new AbortController();
-    async function loadCatalog() {
-      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-        setCatalogLoading(false);
-        return;
-      }
-      try {
-        const response = await fetch(
-          SUPABASE_URL + '/rest/v1/competition_songs?select=id,challenge_number,title&order=challenge_number.asc',
-          {
-            headers: {
-              apikey: SUPABASE_ANON_KEY,
-              Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
-            },
-            signal: controller.signal,
-          }
-        );
-        if (!response.ok) throw new Error('Song catalog request failed.');
-        const rows = await response.json() as CatalogSong[];
-        setCatalogSongs(rows);
-      } catch (error) {
-        if (!controller.signal.aborted) {
-          console.error('Unable to load the WETT Girls song catalog:', error);
-          setCatalogSongs([]);
-        }
-      } finally {
-        if (!controller.signal.aborted) setCatalogLoading(false);
-      }
-    }
-    void loadCatalog();
-    return () => controller.abort();
-  }, []);
-
-
 function SongCatalogGrid({ songs, loading, compact = false }: { songs: CatalogSong[]; loading: boolean; compact?: boolean }) {
   if (loading) {
     return <div className="wg-catalog-state" role="status">Loading the 30-song catalog…</div>;
@@ -132,7 +95,7 @@ function SongCatalogGrid({ songs, loading, compact = false }: { songs: CatalogSo
   );
 }
 
-
+function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -140,6 +103,42 @@ function SongCatalogGrid({ songs, loading, compact = false }: { songs: CatalogSo
   const [copied, setCopied] = useState(false);
   const [catalogSongs, setCatalogSongs] = useState<CatalogSong[]>([]);
   const [catalogLoading, setCatalogLoading] = useState(true);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    async function loadCatalog() {
+      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        setCatalogLoading(false);
+        return;
+      }
+      try {
+        const response = await fetch(
+          SUPABASE_URL + '/rest/v1/competition_songs?select=id,challenge_number,title&order=challenge_number.asc',
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+            },
+            signal: controller.signal,
+          }
+        );
+        if (!response.ok) throw new Error('Song catalog request failed.');
+        const rows = await response.json() as CatalogSong[];
+        setCatalogSongs(rows);
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.error('Unable to load the WETT Girls song catalog:', error);
+          setCatalogSongs([]);
+        }
+      } finally {
+        if (!controller.signal.aborted) setCatalogLoading(false);
+      }
+    }
+    void loadCatalog();
+    return () => controller.abort();
+  }, []);
+
+
 
   useEffect(() => {
     const player = playerRef.current;
